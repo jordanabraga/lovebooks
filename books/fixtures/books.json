@@ -1,0 +1,68 @@
+[
+    {
+
+	"model": "books.book",
+	"pk": null,
+	"fields": {
+        "title": "The Galactic Chronicles",
+        "author": "Evelyn Starlight",
+        "slug": "the-galactic-chronicles",
+        "summary": "In a galaxy far away, a young hero embarks on a journey to save the universe from an ancient evil.",
+        "added_by": 1,
+        "status": 1,
+        "created_on": "2024-02-18T12:00:00"
+	}
+    },
+    {
+	"model": "books.book",
+	"pk": null,
+	"fields": {
+        "title": "Echoes of Eternity",
+        "author": "Michael Evergreen",
+        "slug": "echoes-of-eternity",
+        "summary": "A tale of love and loss spanning centuries, as two souls are destined to meet again and again.",
+        "added_by": 1,
+        "status": 1,
+        "created_on": "2024-02-17T15:30:00"
+	}
+    },
+    {
+	"model": "books.book",
+	"pk": null,
+	"fields": {
+        "title": "Secrets of the Hidden Temple",
+        "author": "Sarah Shadow",
+        "slug": "secrets-of-the-hidden-temple",
+        "summary": "A group of adventurers seeks ancient treasures hidden within a mysterious temple deep in the jungle.",
+        "added_by": 3,
+        "status": 1,
+        "created_on": "2024-02-16T09:45:00"
+	}
+    },
+    {
+	"model": "books.book",
+	"pk": null,
+	"fields": {
+        "title": "The Midnight Library",
+        "author": "Oliver Owl",
+        "slug": "the-midnight-library",
+        "summary": "At midnight, the library comes to life, and books hold secrets waiting to be discovered by those who dare to explore.",
+        "added_by": 1,
+        "status": 1,
+        "created_on": "2024-02-15T18:20:00"
+	}
+    },
+    {
+	"model": "books.book",
+	"pk": null,
+	"fields": {
+        "title": "The Enchanted Forest",
+        "author": "Luna Light",
+        "slug": "the-enchanted-forest",
+        "summary": "Within the enchanted forest, magical creatures roam, and adventures await those brave enough to enter.",
+        "added_by": 1,
+        "status": 1,
+        "created_on": "2024-02-14T11:10:00"
+	}
+    }
+]
