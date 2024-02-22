@@ -49,7 +49,8 @@ def book_detail(request, slug):
         {"book": book,
          "comments": comments,
          "comment_count": comment_count,
-         "comment_form": comment_form,},
+         "comment_form": comment_form,
+         },
     )
 
 def comment_edit(request, slug, comment_id):
