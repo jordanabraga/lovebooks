@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Book, Comment
-from .forms import CommentForm
+from .forms import CommentForm, AddBook
 
 # Create your views here.
 class BooksList(generic.ListView):
@@ -90,3 +90,27 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+
+
+#create view
+
+
+def add_book(request):
+    if request.method == 'POST':
+        form = AddBook(request.POST, request.FILES)
+        if form.is_valid():
+            # Assign the current user to the added_by field before saving the form
+            book = form.save(commit=False)
+            book.added_by = request.user
+            book.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+            )
+            return redirect('creator_view')
+
+    else:
+        form = AddBook()
+    return render(request, '/workspace/lovebooks/books/templates/books/creator_view.html', {'form': form})
+
+    
