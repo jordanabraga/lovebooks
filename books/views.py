@@ -4,12 +4,15 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Book, Comment
 from .forms import CommentForm, AddBook
+from django.db.models import Q
+
 
 # Create your views here.
 class BooksList(generic.ListView):
     queryset = Book.objects.all().order_by("-created_on").filter(approved=True)
     template_name = "books/index.html"
     paginate_by = 3
+
 
 def book_detail(request, slug):
     """
@@ -113,4 +116,20 @@ def add_book(request):
         form = AddBook()
     return render(request, 'books/creator_view.html', {'form': form})
 
-    
+
+class Catalogue(generic.ListView):
+    queryset = Book.objects.all().order_by("-created_on").filter(approved=True)
+    template_name = "books/catalogue.html"
+    paginate_by = 20
+
+
+# Define function to search book
+class SearchView(generic.ListView):
+    model = Book
+    template_name = 'books/index.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Book.objects.filter(
+            Q(title__icontains=query) | Q(author__icontains=query)
+        ).order_by('title', 'author')

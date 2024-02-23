@@ -14,5 +14,8 @@ class AddBook(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Enter the book title', 'maxlength': 100}),
             'author': forms.TextInput(attrs={'placeholder': 'Enter the author name', 'maxlength': 100}),
-            'summary': forms.Textarea(attrs={'placeholder': 'Enter the book summary', 'maxlength': 100}),
+            'summary': forms.Textarea(attrs={'placeholder': 'Enter the book summary', 'maxlength': 1000}),
         }
+
+class BookSearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)

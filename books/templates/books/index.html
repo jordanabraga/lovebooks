@@ -6,6 +6,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
+
+            <form  action="{% url 'search' %}" method="get">
+                {% csrf_token %}
+                <input type="text" name="q" placeholder="Search Blog">
+                <button type="submit" >Search</button>
+              </form>
+              
         </div>
         <div class="col">
             sdjaidjsijdsdijasdsa
