@@ -111,6 +111,6 @@ def add_book(request):
 
     else:
         form = AddBook()
-    return render(request, '/workspace/lovebooks/books/templates/books/creator_view.html', {'form': form})
+    return render(request, 'books/creator_view.html', {'form': form})
 
     
