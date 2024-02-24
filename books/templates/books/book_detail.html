@@ -83,82 +83,47 @@
 
 
 
-
-     <!-- Displaying count of comments -->
-  <div class="row">
-    <div class="col-12">
-      <strong class="text-secondary">
-        <i class="far fa-comments"></i> {{ comment_count }}
-      </strong>
-    </div>
-    <div class="col-12">
-      <hr>
-    </div>
-  </div>
+  
   <!-- Displaying Comments -->
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-      <h3>Comments:</h3>
-      <div class="card-body">
-        <!-- We want a for loop inside the empty control tags
-          to iterate through each comment in comments -->
-        {% for comment in comments %}
-        <div class="p-2 comments
-          {% if not comment.approved and comment.author == user %}
-          faded{% elif not comment.approved %} d-none{% endif %}">
-          <p class="font-weight-bold">
-            {{ comment.added_by }}
-            <span class="font-weight-normal">
-              {{ comment.created_on }}
-            </span> wrote:
-          </p>
-          <div id="comment{{ comment.id }}">
-            {{ comment.body | linebreaks }}
+  <div class="row pt-5">
+      <div class="col-md-8 mx-auto"> 
+          <div class="card comment-container">
+
+          
+              <h3 class="card-header comment-title">Comments about {{ book.title }}</h3>
+              <div class="comment-counter">
+            {% if comment_count == 1 %}
+            <p><i class="far fa-comments"></i> {{ comment_count }} person is talking about this book.</p>
+            {% else %}
+            <p><i class="far fa-comments"></i> {{ comment_count }} people are talking about this book.</p>
+            {% endif %}
           </div>
-          {% if not comment.approved and comment.author == user %}
-          <p class="approval">
-            This comment is awaiting approval
-          </p>
-          {% endif %}
-          {% if user.is_authenticated and comment.added_by == user %}
-          <button class="btn btn-delete"
-          comment_id="{{ comment.id }}">Delete</button>
-          <button class="btn btn-edit"
-            comment_id="{{ comment.id }}">Edit</button>
-          {% endif %}
-        </div>
-        <!-- Our for loop ends here -->
-        {% endfor %}
+              <div class="card-body">
+                  {% for comment in comments %}
+                  <div class="p-2 comment {% if not comment.approved and comment.author == user %}faded{% elif not comment.approved %}d-none{% endif %}">
+                    <p>
+                      <span class="user-name">{{ comment.added_by }} wrote...</span>
+                      <span class="user-date">{{ comment.created_on }}</span>
+                    </p>
+                      <div id="comment{{ comment.id }}">
+                          {{ comment.body | linebreaks }}
+                      </div>
+                      {% if not comment.approved and comment.author == user %}
+                      <p class="approval">
+                          This comment is awaiting approval
+                      </p>
+                      {% endif %}
+                      {% if user.is_authenticated and comment.added_by == user %}
+                      <button class="delete-button" comment_id="{{ comment.id }}">DELETE</button>
+                      <button class="edit-button" comment_id="{{ comment.id }}">EDIT</button>
+                      {% endif %}
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
       </div>
-    </div>
-</div>
-
-</div>
-
-<!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1"
-  aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"
-          id="deleteModalLabel">Delete comment?</h5>
-        <button type="button" class="btn-close"
-          data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete your comment?
-        This action cannot be undone.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-          data-bs-dismiss="modal">Close</button>
-        <a id="deleteConfirm" href="#" class="btn
-          btn-danger">Delete</a>
-      </div>
-    </div>
   </div>
-</div>
+  
 
 {% endblock content %}
 

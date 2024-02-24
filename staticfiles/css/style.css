@@ -162,6 +162,102 @@ input[type="file"]::file-selector-button {
     background-color: #e5e7eb;
   }
 
+/* Book detail */
+
+.book-profile {
+    padding-top: 3vh;
+}
+
+.book-cover {
+    max-width: 100%; 
+    height: auto; 
+    overflow: hidden; 
+    object-fit: cover;
+  }
+  
+.book-detail h2 {
+    color:#70149a;
+    font-weight: 800;
+}
+
+.book-detail h6 {
+    color:#a58abe;
+}
+
+.book-detail p {
+    font-size: 2.2vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.box-detail {
+    text-align: left;
+    font-size: 0.8em;
+    color:#a58abe;
+    margin-top: 1em;
+    padding-bottom: 6vh;
+}
+
+.pink-title {
+    font-family: "Lilita One", sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    color:#f84bc9;
+}
+
+.comment-writer {
+    text-align:center;
+    color:#a58abe;
+}
+
+.comment-login {
+    text-align:center;
+    color:#a58abe;
+    font-size: 2rem;
+}
+
+.comment-title {
+    font-family: "Lilita One", sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    color:#8867b3;
+}
+
+.comment-counter {
+    text-align: center;
+    color:#b09bc4;
+    font-size: 1.5rem;
+    padding-top:1vh;
+}
+
+.user-name {
+    color:#f374d1; /* Different color for added_by text */
+    font-size: 1.5rem; /* Bigger font size for added_by text */
+}
+
+.user-date {
+    color:#b09bc4;
+    font-size: 0.8rem;
+}
+
+.delete-button {
+    font-size: small;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #e695c2; 
+    color:#37044f;
+    cursor: pointer;
+}
+
+.edit-button  {
+    font-size: small;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #cd95e6; 
+    color:#37044f;
+    cursor: pointer;
+}
 
 
 /* Other things */
@@ -352,6 +448,17 @@ input[type="file"]::file-selector-button {
 @media (max-width: 576px) {
     .cool-h1 {
         font-size: 2.5rem;
+        margin-top: 2.5rem;
+    }
+    .header {
+        height: 100%;
+}
+}
+
+/* Adjust height for extra tiny screens */
+@media (max-width: 360px) {
+    .cool-h1 {
+        font-size: 2rem;
         margin-top: 2.5rem;
     }
     .header {
