@@ -4,32 +4,37 @@
 {% block content %}
 
 <div class="header">
-<div class="bg-header">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col search-col">
- 
-            <!-- search bar -->
-            <form  action="{% url 'search' %}" method="get">
-                {% csrf_token %}
-                <input class="search-field" type="text" name="q" placeholder="Search books">
-                <button type="submit" class="btn-lg btn-light ">Search</button>
-              </form>
-              
-        </div>
-        <div class="col">
-            <h1>h1. Bootstrap heading</h1>
-            <h2>"Have you ever read a book that you loved so much that you wanted to talk to everyone about it?"</h2>
+    
+    <div class="container-fluid mb-3">
+        <div class="row">
+            <!-- Search bar column -->
+            <div class="col-lg-6">
+                    <form action="{% url 'search' %}" method="get" class="search-form">
+                        {% csrf_token %}
+                        <input class="form-control search-field" type="text" name="q" placeholder="Search your favorite books">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
+                    </form>
+             </div>
+            <!-- Title and description column -->
+<div class="col-lg-6 d-flex flex-column justify-content-center p-4 mb-3">
+    <h1 class="cool-h1">SHARE YOUR LOVE</h1>
+    <p class="lead"><span class="hello-pink">Everyone is talking about your favorite books</span>. Now it's your turn. Share with the world what you love about the books you're reading.</p>
+</div>
+
             
         </div>
     </div>
 </div>
-</div>
-</div>
 <!-- index.html content starts here -->
+
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-dismissible fade show bg-danger" id="msg" role="alert">
+    {{ message | safe }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 <div class="container-fluid">
     <div class="row">
-
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">

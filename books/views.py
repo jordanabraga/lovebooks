@@ -124,6 +124,12 @@ class SearchView(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        return Book.objects.filter(
+        queryset = Book.objects.filter(
             Q(title__icontains=query) | Q(author__icontains=query)
         ).order_by('title', 'author')
+        
+        # Check if queryset is empty
+        if not queryset:
+            messages.info(self.request, "No books found matching your search criteria. Try typing an author's name or a book title.")
+        
+        return queryset
