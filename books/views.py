@@ -108,19 +108,13 @@ def add_book(request):
             book.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Comment submitted and awaiting approval'
+                'Book submitted and awaiting approval'
             )
             return redirect('creator_view')
 
     else:
         form = AddBook()
     return render(request, 'books/creator_view.html', {'form': form})
-
-
-class Catalogue(generic.ListView):
-    queryset = Book.objects.all().order_by("-created_on").filter(approved=True)
-    template_name = "books/catalogue.html"
-    paginate_by = 20
 
 
 # Define function to search book

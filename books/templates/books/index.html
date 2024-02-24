@@ -3,26 +3,29 @@
 
 {% block content %}
 
+<div class="header">
+<div class="bg-header">
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
-
+        <div class="col search-col">
+ 
+            <!-- search bar -->
             <form  action="{% url 'search' %}" method="get">
                 {% csrf_token %}
-                <input type="text" name="q" placeholder="Search Blog">
-                <button type="submit" >Search</button>
+                <input class="search-field" type="text" name="q" placeholder="Search books">
+                <button type="submit" class="btn-lg btn-light ">Search</button>
               </form>
               
         </div>
         <div class="col">
-            sdjaidjsijdsdijasdsa
-            <h2 class="card-title">"Have you ever read a book that you loved so much that you wanted to talk to everyone about it?"</h2>
-            <p class="card-text">{{ book.summary|safe }}</p>
+            <h1>h1. Bootstrap heading</h1>
+            <h2>"Have you ever read a book that you loved so much that you wanted to talk to everyone about it?"</h2>
+            
         </div>
     </div>
 </div>
-
-
+</div>
+</div>
 <!-- index.html content starts here -->
 <div class="container-fluid">
     <div class="row">

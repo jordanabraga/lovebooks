@@ -16,6 +16,9 @@ class AddBook(forms.ModelForm):
             'author': forms.TextInput(attrs={'placeholder': 'Enter the author name', 'maxlength': 100}),
             'summary': forms.Textarea(attrs={'placeholder': 'Enter the book summary', 'maxlength': 1000}),
         }
+        labels = {
+            'featured_image': 'Upload Cover Image',  
+        }
 
 class BookSearchForm(forms.Form):
     query = forms.CharField(label='Search', max_length=100)
