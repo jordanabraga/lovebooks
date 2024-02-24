@@ -5,7 +5,7 @@ body {
 
 .header {
     height: 80vh;
-    background: linear-gradient(0deg, rgba(171,138,255,1) 0%, rgba(102,13,135,1) 37%);
+    background: linear-gradient(0deg, rgba(167,102,238,1) 0%, rgba(69,28,106,1) 37%);
     color: #F9FAFC;    
 }
 
@@ -18,25 +18,10 @@ body {
 }
 
 .nav-bg {
-    background: #3a2145;
+    background: #281334;
     color: #d4bbf5;
     box-shadow: 0px 5px 5px rgba(80, 173, 255, 0.2); 
     border-bottom: 1px solid #cbe7ff;
-}
-
-.nav-font,
-.nav-font a,
-.nav-font a:visited {
-    color: #d4bbf5;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.nav-font a:hover {
-    color:#e2dffa;
-}
-
-.nav-item {
-    color: yellow;
 }
 
 .bg-valid {
@@ -85,7 +70,7 @@ body {
 .btn-primary {
     font-weight: 800;
     width: 100%; 
-    background-color: rgb(198, 155, 234);
+    background-color: #b193db;
     border-color: rgb(155, 241, 252);
 }
 
