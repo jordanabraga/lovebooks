@@ -2,6 +2,108 @@ body {
     background-color: #F9FAFC;
 }
 
+.header {
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(167,102,238,1) 0%, rgba(112,20,154,1) 37%);
+    color: #F9FAFC;    
+    padding-top: 30vh;
+}
+
+.purple-title {
+    color: #9826cc;
+}
+
+.purple-view {
+    background: #70149a;
+}
+
+.bg-valid {
+    background: #6af09a;
+    font-size: 3vh;
+    color:#4A4A4F;
+}
+/* FORM CONTAINER */
+
+.form-container {
+    max-width: 100vh; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for depth */
+    background-color: #fff; /* Background color */
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container textarea,
+.form-container select {
+    font-size: large;
+    width: 100%;
+    padding: 10px;
+    max-height: 20vh;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.form-container textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.form-container .submit-button {
+    font-size: large;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9826cc; /* Button background color */
+    color: #fff; /* Button text color */
+    cursor: pointer;
+}
+
+.form-container .submit-button:hover {
+    background-color: #f84bc9; /* Button hover background color */
+}
+  
+.search-col {
+    text-align: center;
+    width: 40vh;
+    height: 40vh;
+    padding-top: 10vh;
+}
+
+.search-field {
+    font-size: 30px;
+    width: 50vh;
+    height: 8vh;
+}
+
+input {
+    border-radius: 12px;
+}
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    margin-left: 10px;
+    transition: background-color 200ms;
+  }
+  
+  input[type="file"]::file-selector-button:hover {
+    background-color: #f3f4f6;
+  }
+  
+  input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+  }
+
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
