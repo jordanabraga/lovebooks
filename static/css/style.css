@@ -14,7 +14,32 @@ body {
 }
 
 .purple-view {
-    background: #70149a;
+    background: rgba(69,28,106,1);
+}
+
+.footer-view {
+    background: linear-gradient(0deg, rgba(167,102,238,1) 0%, rgba(69,28,106,1) 37%);
+
+}
+
+.footer-icons{
+    color:#f374d1;
+    font-size:2.6em;
+
+}
+
+.footer-icons a:visted {
+    color:#f374d1; 
+
+}
+
+.footer-icons a {
+    color:#f374d1; 
+}
+
+.footer-logo{
+    color:#f374d1;
+    font-size:1em;
 }
 
 .nav-bg {

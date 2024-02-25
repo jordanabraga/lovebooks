@@ -9,7 +9,7 @@ from django.db.models import Q
 
 # Create your views here.
 class BooksList(generic.ListView):
-    queryset = Book.objects.all().order_by("-created_on").filter(approved=True)
+    queryset = Book.objects.all().order_by("-created_on").filter(approved=True, status=1)
     template_name = "books/index.html"
     paginate_by = 3
 
