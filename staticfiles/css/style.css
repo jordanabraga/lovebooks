@@ -3,6 +3,14 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+a {
+    color:#70149a;
+}
+
+a:hover {
+    color:#f374d1;
+}
+
 .header {
     height: 80vh;
     background: linear-gradient(0deg, rgba(167,102,238,1) 0%, rgba(69,28,106,1) 37%);
@@ -14,7 +22,32 @@ body {
 }
 
 .purple-view {
-    background: #70149a;
+    background: rgba(69,28,106,1);
+}
+
+.footer-view {
+    background: linear-gradient(0deg, rgba(167,102,238,1) 0%, rgba(69,28,106,1) 37%);
+
+}
+
+.footer-icons{
+    color:#f374d1;
+    font-size:2.6em;
+
+}
+
+.footer-icons a:visted {
+    color:#f374d1; 
+
+}
+
+.footer-icons a {
+    color:#f374d1; 
+}
+
+.footer-logo{
+    color:#f374d1;
+    font-size:1em;
 }
 
 .nav-bg {
@@ -34,6 +67,22 @@ body {
     background:#f091d7;
     font-size: 3vh;
     color:#4A4A4F;
+}
+
+#next-baby {
+    color:#70149a;
+}
+
+#next-baby:hover {
+    color:#f374d1;
+}
+
+#prev-baby {
+    color:#70149a;
+}
+
+#prev-baby:hover {
+    color:#f374d1;
 }
 
 /* Description */
@@ -259,6 +308,21 @@ input[type="file"]::file-selector-button {
     cursor: pointer;
 }
 
+/* Book stamp */
+
+.stamp-title {
+    color:#70149a;
+    font-weight: 800;
+}
+
+.stamp-author {
+    color:#a58abe;
+}
+
+.stamp-summary {
+    color: rgb(13, 13, 13);
+    font-family: Söhne, ui-sans-serif, system-ui, -apple-system;
+}
 
 /* Other things */
 
@@ -356,13 +420,9 @@ input[type="file"]::file-selector-button {
 
 .post-link {
     text-decoration: none;
-    color: #445261;
 }
 
-.post-link:hover,
-.page-link {
-    color: #E84610;
-}
+
 
 .post-title {
     margin-top: 10%;
