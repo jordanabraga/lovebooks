@@ -12,6 +12,7 @@ class BookAdmin(SummernoteModelAdmin):
     summernote_fields = ('summary')
 
     actions = ['mark_as_approved']
+    
 
     def mark_as_approved(self, request, queryset):
         queryset.update(approved=True)

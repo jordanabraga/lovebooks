@@ -11,7 +11,7 @@
 <head>
     <title>LoveBooks</title>
     <meta name="description" content="A website where readers can create comments about books.">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 
     <!-- Google Fonts CSS -->
@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/favicon.png' %}" alt="Favicon">
-                <span class="brand">LOVEBOOKS</span></span></a>
+                <span class="brand">LOVEBOOKS</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -73,13 +73,13 @@
                     </li>
                     {% endif %}
                 </ul>
-                <span class="navbar-text nav-font">
+                <div class="navbar-text nav-font">
                     {% if user.is_authenticated %}
                     <p class="text-end m-3">You are logged in as {{ user }}</p>
                     {% else %}
                     <p class="text-end m-3">You are not logged in</p>
                     {% endif %}
-                </span>
+                </div>
             </div>
         </div>
     </nav>

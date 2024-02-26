@@ -360,6 +360,15 @@ JavaScript snippets which are more readable if confined to one line.
 - All HTML files in the project were validated using the W3C Narkup Validation Service.
 https://validator.w3.org/
 
+|   |   |
+|---|---|
+|   |   |
+|   |   |
+|   |   |
+| login page |   |
+|   |   |
+|   |   |
+
 
 #### CSS Validation :
 - No errors were found when the single CSS file style.css was passed through the W3C Validation Service.
