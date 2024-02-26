@@ -110,208 +110,101 @@ I wanted simplicity and I wanted to play with shapes, as well visualize the conn
 
 ## Project planning and documentation 
 
-I started
+I started by creating a Developer's Diary on a blank doc. I defined my goal with the project and user stories (it's the text I used for project goals here).
 
-GitHub Issues were used to document the development steps undertaken in the project. Two issue templates, 
-for [User Epics](https://github.com/johnrearden/just-beats/issues/new?assignees=&labels=&template=user-epic.md&title=USER+EPIC+%3A+%3CTITLE%3E) and [User Stories](https://github.com/johnrearden/just-beats/issues/new?assignees=johnrearden&labels=&template=user-story.md&title=USER+STORY+%3A+%3CTITLE%3E) were used. Various labels were employed to enable quick identification of issue type including Bugs, User Epics, User Stories and Style. MoSCoW prioritisation was employed using the labels must-have, should-have and could-have. 
+**As a an unlogged user, I must be able to:**
+- View book pages;
+- View comments on book pages; 
+- Search book pages;
+- Register on the website.
 
-To break the project into manageable sprints, GitHub Projects was used to provide a Kanban board
-onto which the issues were posted, moving them from 'Todo' to 'In Progress' to 'Done' as they 
-were completed in turn. The iterations are documented here - [Iteration 1](https://github.com/users/johnrearden/projects/4), [Iteration 2](https://github.com/users/johnrearden/projects/5) and [Iteration 3](https://github.com/users/johnrearden/projects/6)
+**As a logged user, I must be able to:**
+- Add book pages;
+- Comment on book pages;
+- Delete and edit my comment on book pages;
+- Logout from the website.
 
-The User Epics and their related User Stories are as follows:
-- Epic : [Create Drum Loops](https://github.com/johnrearden/just-beats/issues/2).
-    - Story : [Load basic drum template](https://github.com/johnrearden/just-beats/issues/5#issue-1393424794)
-    - Story : [Toggle beats on and off](https://github.com/johnrearden/just-beats/issues/6#issue-1393425523)
-- Epic : [Listen to other users' loops](https://github.com/johnrearden/just-beats/issues/4)
-    - Story : [Create list view of all drumloops ordered by rating]()
-    - Story : [Allow user to preview loops without switching to loop editor view](https://github.com/johnrearden/just-beats/issues/19)
-- Epic : [Create an account](https://github.com/johnrearden/just-beats/issues/1)
-    - Story : [User account creation using all-auth](https://github.com/johnrearden/just-beats/issues/15#issue-1406144429)
-    - Story : [Styling the user account views](https://github.com/johnrearden/just-beats/issues/16)
-    - Story : [Social sign in](https://github.com/johnrearden/just-beats/issues/17)
-- Epic : [Play drum loops](https://github.com/johnrearden/just-beats/issues/10)
-    - Story : [Play/pause drumloop audio](https://github.com/johnrearden/just-beats/issues/11)
-    - Story : [Change track volume](https://github.com/johnrearden/just-beats/issues/12)
-- Epic : [Edit my drum loops](https://github.com/johnrearden/just-beats/issues/3)
-    - Story : [Add new track to drumloop](https://github.com/johnrearden/just-beats/issues/7#issue-1393427818)
-    - Story : [Change instrument on a track](https://github.com/johnrearden/just-beats/issues/8#issue-1393428524)
-    - Story : [Change drumloop tempo](https://github.com/johnrearden/just-beats/issues/13#issue-1393439736)
-    - Story : [Save drumloop](https://github.com/johnrearden/just-beats/issues/9#issue-1393429114)
-    - Story : [Delete existing track](https://github.com/johnrearden/just-beats/issues/21#issue-1428735119)
-- Epic : [Rating other users' loops](https://github.com/johnrearden/just-beats/issues/22)
-    - Story : [Give a star rating to someone else's loop](https://github.com/johnrearden/just-beats/issues/23#issue-1436561054)
-    - Story : [Make a comment on someone else's loop](https://github.com/johnrearden/just-beats/issues/24#issue-1436564637)
-    - Story : [Allow admin to moderate comments before publishing](https://github.com/johnrearden/just-beats/issues/25)
-- Epic : [Enhance user engagement](https://github.com/johnrearden/just-beats/issues/34#issue-1473376685)
-    - Story : [Allow users to share a link to a drumloop](https://github.com/johnrearden/just-beats/issues/35)
-    - Story : [Add animations synchronised with audio playback](https://github.com/johnrearden/just-beats/issues/36#issue-1473393530)
+**As a superuser, I must be able to:**
+- Add book pages;
+- Approve, edit and delete book pages;
+- Comment on book pages;
+- Approve user's comments;
+- Delete and edit comments on book pages;
+- Change website permissions for a user;
+- Removing users. 
 
+After this, I added the user stories on a Trello board and used it as reference during development.
 
-## Inline JavaScript and event handlers.
-When using Django templates, the fields passed in from the backend are only 
-available within the HTML document itself. It is therefore simpler to write event
-handlers directly into the document, rather than in external JS files. This means that
-the HTML and JavaScript are tightly coupled, but this would be necessary in any case 
-in the absence of direct fetch calls to the API. 
+![trello](media/docs/trello.jpg)
 
 ## Data Model
 
+I used Google Sheets to plan my models and brainstorm ideas, also to make it clear the type of field used (ManytoOne, OnetoOne, ManytoMany). I wanted to make sure it would have an auto-slug field.
 
-![Entity-relationship diagram for models](media/docs/entity_relationship_diagram.png)
-
-- Data validation
-    - **Drumloop model**. This model has two field that the user has control over - name and tempo. The name field is set to unique in the model, and attempting to enter a name that already exists in the database will result in the new drumloop form being returned to the user with an error message informing them of this conflict. The tempo field in the form has a NumberInput widget specified with a min and max value, which will prevent the user from using the arrow keys on the widget to select a tempo outside the legal range. The model itself has min and max validators, so even if the user enters an illegal tempo using the keyboard, e.g. 34 or 322, the form will be returned to them with the appropriate error. The creator field is set on the form and hidden to the user, and so cannot be altered by them.
-    - **Track model** The track model does not have fields that the user can alter through text entry. The volume field can be altered in the drum editor, but its validity (0 <= volume <= 10) is ensured by the min and max attributes on the volume range input, and the Min- and MaxValueValidators on the model itself. The beats field necessarily has 32 characters corresponding to the 32 beat divs on the Loop Editor page, whose number cannot be changed by the user, and their values ('8' for on and '0' for off) are set in code in response to click events on the beat divs, and as such the user cannot alter them. The instrument can only be altered by clicking on one of the selections in the instrument modal, which protects this field from invalid modification.
-    - **Instrument model** The instrument model fields are not exposed to the user at any time.
-    - **Review model** The review model has a number of fields that are exposed to the user. The comment field has a max length, so the user can only type that many characters. If more characters than are allowed are pasted into the textarea, only the max limit number of characters will actually be saved to the database. The rating field can only be altered in the rating form, and is controlled by a number input with min and max values set. Pasting an out of range value into the input will result in an error on the client side, informing the user of their mistake. The reviewer and drumloop fields are handled by HiddenInput fields in the ReviewForm class, and as such are not exposed to the user at all. The approved field is also not exposed in the form, and is set to false by default. This field can only be set to true by the superuser account.
-    - **User model** The default Django User model is used, so validation is handled by the framework.
-
-
-# Testing
-- Manual testing
-- Automated testing
-- In-app testing
-- User story testing
-- Validator testing
-
----
+![model_plan](media/docs/fields.png)
 
 ## Manual Testing
 
 ### Feature Testing
 
+I tested the project on desktop and mobile, trying all the features and user paths.
+
+User paths tested:
+- Homepage -> login -> search books/browse books -> comment on books -> edit comment -> delete comment -> logout
+- Homepage -> Sign up -> (same as above)
+- Homepage -> login -> add book
+
+Superuse paths tested:
+- Admin page -> books -> Filter books, approve/delete books -> book detail -> edit book, delete book, change feature image
+- Admin page -> add book 
+- Admin page -> comments -> approve/delete comments -> edit, delete comments
+
+I made edits and tested if the superuser could manipulate other users content. The superuser is able to assign a published book as added by different users.
+
+As for the search box, I tried multiple combinations to make sure it would return results as intended. For example, at first drafted books were showing up on the seach, and I adjusted the code to avoid this.
+
+### Detailed Manual Testing
+
 |Page|Feature|Action|Effect|
 |---|---|---|---|
 |Homepage|Site Logo|Click|Redirects to home page from all pages|
-|Homepage|Logged In User Display|Log in as existing user|Username appears in navbar|
+|Homepage|Logged In User Display|Log in as existing user|Username appears in navbar and ADD BOOK|
 |Homepage|Home link|Click|Redirects to home page from all pages|
+|Homepage|FAQ|Click|Redirects to faq page|
+|Homepage|Add book|Click|Redirects to add book page|
 |Homepage|Logout link|Click|Redirects to confirm signout page|
 |Homepage|Confirm logout|Click 'ok'|Redirects to home page|
 |Homepage|Login link|Click|Redirects to Sign In Page|
 |Homepage|Register link|Click|Redirects to Sign Up Page|
-|Homepage|All Loops Button|Click|All loops displayed on homepage|
-|Homepage|My Loops Button|Not logged in|Button is disabled|
-|Homepage|My Loops Button|Logged in : click|Only user's loops are displayed|
-|Homepage|Edit Button|Logged out|Not visible|
-|Homepage|Edit Button|Logged in : click|Visible - redirects to Loop Editor Page|
-|Homepage|Loop row|Hover on row|Row is highlighted in green|
-|Homepage|Loop row|Click|Redirects to Loop Detail Page for this selected loop|
-|Homepage|Call-to-Action New Loop Button|Logged in : click|Redirects to Create New Loop Form|
-|Homepage|Call-to-Action login button|Logged out : click|Redirects to Login Page|
-|Homepage|Message on login|Login as user|Successful Signin message appears, clears after 3 seconds|
-|Homepage|Message on logout|Logout|Successful signout message appears, clears after 3 seconds|
-|Login Page|Social sign-in button|Click|Redirects to confirm social signin page|
-|Login Page|Social sign-in continue button|Click|Redirects to Sign in with Google page|
-|Login Page|Username validation|Enter incorrect username|Error message response - does not specify if username or password failed|
-|Login Page|Password validation|Enter incorrect password|Error message response - does not specify if username or password failed|
-|Login Page|Remember me button|Checkbox on|Close browser window and reopen - user still logged in|
-|Login Page|Sign in button|Click|Redirects to home page, shows successful login message|
-|Logout Confirm Page|Sign Out button|Click|Redirects to home page, user logged out|
-|Register Page|Reroute to login page|Click link|Redirects to login page|
-|Register Page|Username validation|Try using existing username|Error message appears - 'A user with that username already exists'|
-|Register Page|email validation|Entered invalid email (without '@'|Error message - 'Please enter valid email address' and registration fails|
-|Register Page|password1|Enter a short password|Error message - 'That password is too short'|
-|Register Page|password2|Enter different password to password1 field|Error message - 'You must type the same password each time'|
-|Register Page|Sign Up button|Entered valid form data|Redirects to home page - success message displayed|
-|Loop Detail Page|Loop name display|No action|Loop name displays correctly|
-|Loop Detail Page|Creator display|No action|Creator name displays correctly|
-|Loop Detail Page|Track beat display|No action|All tracks present, all beats present|
-|Loop Detail Page|Track beat animation|Click play button|Each beat highlighted in time on each track|
-|Loop Detail Page|Site logo animation|Click play button|Logo grows on every 16th beat, and then slowly shrinks|
-|Loop Detail Page|Play button|Click|Audio playback and animations begin|
-|Loop Detail Page|Play button|Hover|Button appearance changes|
-|Loop Detail Page|Pause button|Click|Audio playback and animations cease|
-|Loop Detail Page|Play/pause button animation|Click to play|Button icon rotates quickly at beginning of every 16th beat|
-|Loop Detail Page|Volume Input|Click on up and down buttons on input|Volume immediately goes up and down|
-|Loop Detail Page|Share link display|No action|current url displayed|
-|Loop Detail Page|Share link copy button|Click|link successfully copied to clipboard|
-|Loop Detail Page|Rating button|Click|Redirects to rating page|
-|Loop Detail Page|Rating button when logged out|No action|Not shown|
-|Loop Editor Page|Loop name display|No action|Loop name displayed correctly|
-|Loop Editor Page|Creator display|No action|Creator name displayed correctly|
-|Loop Editor Page|Tempo control|Click arrow buttons to increase and decrease value|Tempo increases and decreases immediately as audio plays|
-|Loop Editor Page|Instrument button|Click|Instrument modal shown, current instrument highlighted|
-|Loop Editor Page|Instrument modal|Click on option|Sample plays once|
-|Loop Editor Page|Instrument modal dismiss|Click outside modal or close button|Modal is hidden|
-|Loop Editor Page|Instrument modal save button|Save clicked|Modal hidden, instrument updated|
-|Loop Editor Page|Instrument change message|No action|Instrument changed message shown, fades after 3 sec|
-|Loop Editor Page|Track volume control|Adjust slider|Volume of track changes in real time|
-|Loop Editor Page|Beat toggle|Toggle on|Beat is now heard in playback, beat div highlighted|
-|Loop Editor Page|Delete track button|Click|Confirm delete track modal shown|
-|Loop Editor Page|Confirm delete track|Click|Track deleted and confirmation message shown|
-|Loop Editor Page|Refuse delete track|Click|No change to loop|
-|Loop Editor Page|Play button|Click|Audio playback and animations begin, icon changes to pause|
-|Loop Editor Page|Pause button|Click|Audio playback and animations end, icon changes to play|
-|Loop Editor Page|Loop volume control|Click on up and down arrow buttons|Overall playback volume increases and decreases|
-|Loop Editor Page|Add new track button|Click|Instrument modal shown, after save clicked, new track appears with chosen instrument|
-|Loop Editor Page|Delete Loop Button|Click|Confirm delete loop modal appears|
-|Loop Editor Page|Delete Loop confirm|Click|Redirects to homepage, success message displayed, loop gone|
-|Loop Editor Page|Delete loop reject|Click|No change to loop|
-|New Loop Form|Name field|No action|Default name shown|
-|New Loop Form|Tempo field|Click on arrow buttons|Tempo increases and decreases|
-|New Loop Form|Let's get looping button|Click|Redirects to Loop Editor page, success message displayed|
-|New Loop Creation Flow|Default set-up|Create new loop|New loop created with one track, default instrument selected, no beats yet selected|
-|New Loop Creation Flow|Error|Enter name that already exists|Form displayed again with error shown|
-|Loop Rating page|Previous comment|No action|Previous comments shown correctly|
-|Loop Rating page|Previous rating|No action|Previous ratings shown correctly|
-|Loop Rating page|Previous reviewer|No action|Previous reviewer shown correctly|
-|Loop Rating page|User rating selector|Click on up and down arrows|Rating ranges from 0 to 5|
-|Loop Rating page|User rating validation|Click to increase from 5 to 6|No change and red error highlight appears|
-|Loop Rating page|User comment field|Fill with text|Text appears, comment max length observed|
-|Loop Rating page|Submit button|Click|Redirects to home page, success message appears|
-
+|Homepage|Search bar|Type book name|Finds book|
+|Homepage|Search bar|Type part of a word|Finds books|
+|Homepage|Search bar|Type inexistent word "dsdas"|Shows message|
+|Homepage|Book details|Click|Opens book page|
+|Homepage|Social Media links|Click|All open new page with the correct social media link|
+|FAQ|Text collapse button|Click|All buttons collapse|
+|FAQ|Text links|Click|All direct to the correct page|
+|ADD NEW BOOK|Form text|Type on the fields|All fields work|
+|ADD NEW BOOK|Submit button|Click|Adds book to the database|
+|ADD NEW BOOK|Add book without image|Not upload image|Placeholder image is displayed|
+|BOOK PAGE|Text field|Type on the fields|Field work|
+|BOOK PAGE|Submit button|Click|Adds comment to the database and message appears|
+|BOOK PAGE|Edit button|Click|Edit comment|
+|BOOK PAGE|Delete button|Click|Delete comment|
+|BOOK PAGE|Login link|Click|Redirect to login page|
+|BOOK PAGE|Comment counter text|1 comment|Displays the text person|
+|BOOK PAGE|Comment counter text|2 comment|Displays the text people|
+|ADMIN PAGE|Approve comments action|Select/Click|Aproved all comments selected|
+|ADMIN PAGE|Approve books action|Select/Click|Aproved all books selected|
 
 ### Responsiveness
-Here's a set of screenshots taken with the Chrome dev tools device toolbar, set
-to the iPhone 12 Pro. They are, in order, the homepage, loop editor page, instrument chooser page, 
-the review form, and the loop detail page.
 
-![iphone12_homepage](media/docs/iPhone12_homepage_screenshot.png)
-![iphone12_editor](media/docs/iPhone12_loopeditor_screenshot.png)
-![iphone12_instrument](media/docs/iPhone12_instrumentchooser_screenshot.png)
-![iphone12_review](media/docs/iPhone12_commentform_screenshot.png)
-![surfacepro_loop_detail](media/docs/iphone12_loop_detail_page.png)
+While creating the project, I checked each feature and page to make sure it would work on different screen sizes. I used the Developer's Tool to do that, as while checking on desktop and mobile. 
 
-Here's the same five pages on the Surface Pro 7
+### Lighthouse + Color Contrast
 
-![surfacepro_homepage](media/docs/surface_pro_homepage_screenshot.png)
-![surfacepro_editor](media/docs/surface_pro_editor_screenshot.png)
-![surfacepro_instrument](media/docs/surface_pro_instrumentchooser_screenshot.png)
-![surfacepro_review](media/docs/surface_pro_review_screenshot.png)
-![surfacepro_loop_detail](media/docs/surface_pro_loop_detail_screenshot.png)
+I also used Lighthouse to check for potential issues and then I used Siege Media color contrast to adjust colors.
 
-And finally the same five pages on a desktop monitor (1920x1080)
-
-![desktop_homepage](media/docs/desktop_homepage_screenshot.png)
-![desktop_editor](media/docs/desktop_editor_screenshot.png)
-![desktop_instrument](media/docs/desktop_instrumentchooser_screenshot.png)
-![desktop_review](media/docs/desktop_review_screenshot.png)
-![desktop_loop_detail_page](media/docs/desktop_loop_detail.png)
-
-### Browser Compatibility
-
-| Feature | Chrome | Firefox | Safari(mobile) |
---- | --- | --- | --- | 
-Audio playback upon first user interaction | True | True | True
-Fonts render correctly | True | True | True
-All elements visible | True | True | True 
-Pages are responsive at all screen sizes | True | True | True
-### Lighthouse
-
-Here are the lighthouse reports for the site's main pages :
-#### Homepage
-
-![homepage](media/docs/homepage_lighthouse_report.png)
-
-#### Loop Editor Page
-![loop_editor_page](media/docs/loop_editor_lighthouse_report.png)
-
-#### Loop Detail Page
-![loop_detail_page](media/docs/loop_detail_lighthouse_report.png)
-
-#### Loop Rating Page
-![loop_rating_page](media/docs/create_review_lighthouse_report.png)
+![color_contrast_validator](media/docs/contast-colors.png)
 
 ### Code Validation
 
@@ -321,7 +214,7 @@ Here are the lighthouse reports for the site's main pages :
 #### JavaScript code :
 - The JavaScript code in the project was validated using JSHint. I only use javascript for the edit and delete button for the comments, and the code was provided by Code Institute on the CodeStar project.
 
-![sign in errors](media/docs/javascript erro.png)
+![sign in errors](media/docs/javascript-erro.png)
 
 #### HTML Validation :
 - All HTML files in the project were validated using the W3C Narkup Validation Service.
@@ -345,106 +238,30 @@ Related to the help text for the password.
 - I pasted the entired CSS code from file style.css on the W3C Validation Service, and received the result "Congratulations! No Error Found."
 https://jigsaw.w3.org/css-validator/
 
-
-### User Stories
-The User Epics and Stories in this project are documented in three GitHub Projects, corresponding 
-to the three iterations that comprised the development work of the project. These can be found here :
-
-- [Iteration 1](https://github.com/users/johnrearden/projects/4)
-- [Iteration 2](https://github.com/users/johnrearden/projects/5)
-- [Iteration 3](https://github.com/users/johnrearden/projects/6/views/1)
-
-Alternitively, the Epics and Stories are individually linked here :
-
-- [Epics and Stories](#development-process)
-
----
-
-## Testing
-
-### Testing django views, models and forms.
-Automated tests were written for all forms, models and views using the Django testing framework. 
-- Models: 
-    - Each model was tested to ensure that object creation resulted in the correct application of supplied field values, and the correct injection of default values where these were absent. 
-    - The relevant validators were also tested with illegal input to ensure that they raised ValidationErrors. 
-    - For the sake of getting to 100% coverage, the __str__ methods of each model were also tested to ensure appropriate output. The string methods were tested not for exact match, but for containing the relevant fields, to allow for rewording of the string methods while retaining the essential output. IMO, this makes the tests a little less brittle.
-- Forms:  
-    - The ReviewForm was tested to ensure its rating value had to be within bounds, and that a comment
-    had to be provided in order for the is_valid() method to return True.
-    - The ReviewForm widget class names were tested to ensure that they would remain hidden to the user.
-    - The NewDrumloopForm was tested to ensure that the loop name was required. 
-- Views: 
-    - All view get methods were tested to ensure that they return a 200, and that the correct template
-    was used for all standard (Non-API) views.
-    - All view post methods were tested to ensure that they return a 200 if appropriate, and that any
-    object data posted results in the creation of the correct object.
-- Serializers were not tested, as this would amount to testing Django functionality.
-
-The nose test runner was installed, which conveniently runs the coverage report and html generation as part of the test suite, but unfortunately it turned out that nose loads the models before running the tests, so that the model code is never accessed during the tests themselves, and thus does not show up
-in the coverage report. This is a deal-breaker, as the html coverage report is very useful for finding
-untested parts of the codebase. Issue link : https://github.com/jazzband/django-nose/issues/180
-
-### Testing page functionality with Selenium
-Note - writing of tests was considerably slowed down by an issue with actions fired by selenium 
-resulting in changes to the development database, rather than the testing database. The url used for testing should be localhost, but the port used is assigned dynamically, and should be accessed using self.live_server_url. Unfortunately, I initally set the selenium webdriver to connect to localhost at port 8000, the default django server, and I didn't detect the problem because the dev server was actually running as I was writing the tests. This resulted in the dev database being used rather than the test database, and so a test involving user registration actions passed the first time with a test username, and subsequently failed due to fact that the database was not being destroyed after test runs. Solution found here https://stackoverflow.com/questions/17435155/django-functional-liveservertestcase-after-submitting-form-with-selenium-obje. 
-
-Also, it was necessary to use the default static storage in place of Cloudinary's static hashed storage
-to run the selenium based tests, so a conditional statement was added to settings.py to detect if a test was being run or not.
-
-[Return to top](#just-beats)
-
 # Bugs
 
-- Google social authentication: Error 400 redirect_uri_mismatch. The problem was caused by the redirect uri
-I supplied to Google when setting up the credentials having a missing trailing slash at the end. 
-https://www.youtube.com/watch?v=QHz1Rs6lZHQ&t=1s
+I didn't run in any major bugs while creating the project. Most of them were due to typos. I still documented everything that caused a problem in the page loading as expected. 
 
-- Problem with setTimeout and this.
-I originally wrote the LoopPlayer class using the ES6 constructor syntax, but using
-arrow functions syntax in the function definitions. 
-`scheduler = () => { .... }`
-JSHint did not approve, so I changed the function definitions to the standard class syntax.
-`scheduler() { ...... }`
-This introduced a bug which was equal parts annoying and interesting. At the end of the scheduler function, it invokes itself again after a delay using setTimeout. Removing the arrow syntax from the
-function definitions resulted in the value of this being reset to the global context, which didn't have access to the AudioContext created within the class constructor. The solution was to place the schedule function call inside a wrapper function and bind this
- to the correct context. The [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#as_an_object_method) and [this stack overflow reply](
-https://stackoverflow.com/questions/591269/settimeout-and-this-in-javascript) were very helpful.
+Problem: The httpresponse page /books wasn't displaying. Fix: Corrected a typo. 
+Problem: Book summary on main page was showing text with HTML. Fix: Include the safe filter in index html. {{ book.summary|truncatewords:30|safe }}
+Problem: Now book summary was disappearing for certain books. Fix: I decided that truncatewords wasn't as necessary, and the full summary view while browsing books was better user experience.
+Problem: "Edit" comment button wasn't being displayed. Fix: Correct the "comment_edit" function identation. 
+Problem: Deployment to heroku failed due to "ModuleNotFoundError: No module named 'crispy_forms'". Fix: Change to double quotes the crispy_forms on the installed apps list. 
+Problem: Deployment to heroku didn't display css properly. Fix: Run collectstatic again.
+Problem: CSS wasn't being displayed on server. Fix: Change DEBUG to TRUE.
+Problem: A few posts were displaying a different CSS. Fix: It was the Summernote text box adding html and css, I removed those. (Note: truncatewords might work now, but I don't want to add it anymore.)
+Problem: Edit and delete button stopped working. Fix: I needed to adjust the variables to my new class names. 
 
-- A number of other bugs and their solution are documented in the issues tracker on GitHub, such as :
-    - https://github.com/johnrearden/just-beats/issues/33#issue-1470078969
-    - https://github.com/johnrearden/just-beats/issues/32#issue-1470076409
-    - https://github.com/johnrearden/just-beats/issues/31#issue-1469595248
-    - https://github.com/johnrearden/just-beats/issues/29#issue-1456889524
-    - https://github.com/johnrearden/just-beats/issues/28#issue-1456888950
-    - https://github.com/johnrearden/just-beats/issues/20#issue-1419176312
-
-## Remaining Bugs
-There are (hopefully) no remaining bugs in the project.
-
-[Return to top](#just-beats)
-
-# Libraries and Programs Used
-1. [Lucid](https://www.lucidchart.com/pages/)
-    - Lucid charts were used to create the execution path diagrams.
+# Programs Used
+1. [Gitpod](https://www.gitpod.io/)
+    - I used all my available gitpod hours to finish this project, and a bit more provided by Code Institute.
 2. [Heroku](https://www.heroku.com/)
-    - Heroku was used to deploy the project
-3. [Git](https://git-scm.com/)
-    - Version control was implemented using Git through the Github terminal.
+    - Heroku was used to deploy the project terminal.
 4. [Github](https://github.com/)
     - Github was used to store the projects after being pushed from Git and its cloud service [Github Pages](https://pages.github.com/) was used to serve the project on the web. GitHub Projects was used to track the User Stories, User Epics, bugs and other issues during the project.
-5. [Visual Studio Code](https://code.visualstudio.com/)
-    - VS Code was used locally as the main IDE environment, with the JSHint and Flake8 linters installed for JavaScript and Python code validation respectively.
-6. [pytest](https://docs.pytest.org/en/7.1.x/)
-    - Pytest was used for automated testing.
-7. [Selenium](https://www.selenium.dev/)
-    - The selenium python bindings were used to write automated front-end/integration tests. This was 
-    very convenient as it allowed these tests to be run as part of the usual Django test suite, and also 
-    allowed programmatic access to the projects models and database right next to the selenium calls to automate the browser.
-8. [GIMP](https://www.gimp.org/)
-    - The GIMP graphic editing package was used to manipulate and export all images used in the project.
-9. [tooltip-sequence](https://github.com/SoorajSNBlaze333/tooltip-sequence)
-    - A handy javascript/css library for creating a sequence of modal tooltips, used in this project 
-    to create instructions for the Loop Editor.
+8. [Photoshop]
+    - I used Photoshop to create and edit assets fo the project.
+
 # Deployment
 
 ## Setting up a cloudinary account for static storage.
@@ -465,7 +282,7 @@ configuration variables in the next section.
     - Return to Resources tab and click on the Heroku Postgres icon, then select the settings tab and click on Database Credentials. Copy the URI to your clipboard. Paste it to your env.py file using the key "DATABASE_URL". This will allow you to use the same database for development and production.
 5. Click the settings tab on the Dashboard, and click the button to Reveal Config Vars. Your database url should be populated here already. Add your Django secret key and your Cloudinary URL (see 1st section above) to the config variables.
 Set the PORT to 8000. I also have a GOOGLE-API-KEY config variable to enable Social-Sign-In with Google.
-6. In your local repository, add a Procfile to the root directory of the project, containing the following line :<br /> `web: gunicorn JUST_BEATS.wsgi`.
+6. In your local repository, add a Procfile to the root directory of the project, containing the following line :<br /> `web: gunicorn lovebooks.wsgi`.
 7. Add the url of your Heroku project to the `ALLOWED_HOSTS` list in `settings.py`.
 8. Set DEBUG to False, and commit your changes and push to GitHub.
 9. In Heroku, navigate to the Settings Tab, and within this the Buildpacks section, and click on Add Buildpack. Select the python buildpack, and save changes.
@@ -476,7 +293,7 @@ GitHub icon to connect your Heroku project to your GitHub repo. Enter your repos
 ## Making a local clone
 1. Open a terminal/command prompt on your local machine.
 2. Navigate to the folder on your local machine where you would like to clone the project.
-3. Enter the command : `git clone 'https://github.com/johnrearden/just-beats.git'`
+3. Enter the command : `git clone 'https://github.com/jordanabraga/lovebooks.git'`
 
 ## Running the app in your local environment
 1. Create a virtual enviroment in the new project folder using the command `python3 -m venv venv`
@@ -490,54 +307,34 @@ GitHub icon to connect your Heroku project to your GitHub repo. Enter your repos
     - SELENIUM_TEST_USERNAME, SELENIUM_TEST_PASSWORD, SELENIUM_FIXTURE_USERNAME, SELENIUM_FIXTURE_PASSWORD: 
         If you are the project assessor, these settings can be accessed through Code Institute. They are required to run the Selenium tests using the fixtures included in the project. Standard Django automated tests do not require these variables to run.
 
-## Testing the app locally
-1. Open a terminal and enter the command : `python3 manage.py test`. Testing the front-end with Selenium requires (on a linux system) requires both Chromium and chromedriver to be installed, and chromedriver must be added to the PATH variable. chromedriver version should match the version of Chrome installed on the system: most recent versions can be found here - https://chromedriver.chromium.org/downloads
-2. To test only the Django code, enter the command : <br/>`python3 manage.py test beats_app.test_views beats_app.test_models beats_app.test_forms`
-
-[Return to top](#just-beats)
 # Credits
-Cloning a string in javascript:
-https://stackoverflow.com/questions/31712808/how-to-force-javascript-to-deep-copy-a-string
 
-Creating an audio sequencer:
-https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques
+I used Code Institute's Code Star blog project as a reference.
 
-Bit shifting in Javascript:
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift
+I also researched a few topics and StackOverFlow answers helped me with building this project. Here are the links that I used:
+https://ctrlzblog.com/django-models-how-to-automatically-populate-slug-fields-for-urls/
+https://ctrlzblog.com/how-to-use-foreign-keys-in-your-django-project/
+https://ctrlzblog.com/how-to-add-tags-to-your-blog-a-django-manytomanyfield-example/
+https://linuxhint.com/build-a-basic-search-for-a-django/
+https://dev.to/thedevtimeline/how-to-add-tags-to-your-models-in-django-django-packages-series-1-3704
+https://www.learningaboutelectronics.com/Articles/How-to-create-a-website-that-allows-for-user-generated-posts-with-Python-in-Django.php
+https://ordinarycoders.com/blog/article/render-forms-with-django-crispy-forms
+https://www.youtube.com/watch?v=VL5ZNCjXEbw&t=311s
 
-Hashing a string: 
-https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
-
-Configuring Google social login using allauth
-https://django-allauth.readthedocs.io/en/latest/installation.html
-
-Django authentication with Google
-https://www.codeunderscored.com/django-authentication-with-google/
-
-Get csrf cookie for POST request
-https://www.brennantymrak.com/articles/fetching-data-with-ajax-and-django.html
-
-Testing Djando form widget fields
-https://stackoverflow.com/questions/50643143/testing-form-field-widget-type
-
-login_required decorator
-Thanks to Jose Guerra, from my cohort
-
-Hiding Django messages after a short delay: Code Institute video.
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/b31493372e764469823578613d11036b/ae7923cfce7f4653a3af9f51825d2eba/
-
-Drum samples used in the project from https://99sounds.org/drum-samples/.
-
-How to display a favicon in Django (tldr; put it in base.html)
-https://learndjango.com/tutorials/django-favicon-tutorial
-
-Adding a slug field to a model
-https://learndjango.com/tutorials/django-slug-tutorial
+A few book covers are fake coves created by me using licence free pictures:
+Image by wirestock on Freepik
+Image by pvproductions on Freepik
+avatar
+vecstock
+Photo by Rakicevic Nenad
+Photo by Faik  Akmd
+Photo by Keenan Constance
+Photo by Lina Kivaka
+Photo by Pavel Danilyuk
+Photo by Bruno Bueno
 
 # Acknowledgements
 
-I'd like to acknowledge the invaluable assistance I received from my tutor, Celestine Okoro, 
-and the advice and encouragement I received from my cohort coordinators Kenan Wright and Kasia Bogucka.
-Thanks also to my fellow students whose help in our weekly stand-ups made a big difference.
+This project was hard to finish because of personal reasons, but at the same time easy to move forward because of the interesting topic. The concepts I've been learning are finally settling in and I'm been able to understand more and more. Creating this was fun, and I can't wait to do more.
 
-[Return to top](#just-beats)
+I want thank the fellow student Valentino for helping me out with a few questions, and the psyduck tutor who saved me after I struggled with the debug turned false. 

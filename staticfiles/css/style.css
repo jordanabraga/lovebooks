@@ -123,7 +123,7 @@ a:hover {
 .btn-primary {
     font-weight: 800;
     width: 100%; 
-    background-color: #b193db;
+    background-color: #9160c3;
     border-color: rgb(155, 241, 252);
 }
 
@@ -228,7 +228,7 @@ input[type="file"]::file-selector-button:active {
 }
 
 .book-detail h6 {
-    color:#a58abe;
+    color:#8764aa;
 }
 
 .book-detail p {
@@ -239,7 +239,7 @@ input[type="file"]::file-selector-button:active {
 .box-detail {
     text-align: left;
     font-size: 0.8em;
-    color:#a58abe;
+    color:c
     margin-top: 1em;
     padding-bottom: 6vh;
 }
@@ -253,12 +253,12 @@ input[type="file"]::file-selector-button:active {
 
 .comment-writer {
     text-align:center;
-    color:#a58abe;
+    color:#8764aa;
 }
 
 .comment-login {
     text-align:center;
-    color:#a58abe;
+    color:#8764aa;
     font-size: 2rem;
 }
 
@@ -314,7 +314,7 @@ input[type="file"]::file-selector-button:active {
 }
 
 .stamp-author {
-    color:#a58abe;
+    color:#8764aa;
 }
 
 /* .stamp-summary {
