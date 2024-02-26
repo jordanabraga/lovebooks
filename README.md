@@ -22,95 +22,95 @@ It's a simple, positive website for more personal thoughts about the books that 
 
 **Results:** BookLover is a website with a book catalogue that can be quickly accessed through searching or browsing and can be improved by adding new books. It has a comment section on book pages that allow users to share comments and view other users comments. 
 
+While creating BookLover, I wanted to create a MVP. What was absolutely necessary (and enough) to make it work?
+- Viewing books and comments
+- Adding books and comments
+- Moderating books and comments
+- Do all of that in an easy, intutive way
+
+The result is simple, and yet all features add on each other. The search bar makes browsing books faster, the FAQ and text directs user to how to use the website, the admin panel makes content moderation a relief and the book model allows enough personalization without wasting too much time filling up details. 
+
+Below I explain in detail each feature. 
+
 ## Features
 - **Homepage** : 
-The user is first shown a list of all the saved drumloops, ordered by rating, 
-and can listen to any of these. Clicking on the play button plays the loop, and also
-brings up a display at the bottom of the page with the loop name and a button to
-allow the user to rate and comment on the loop (only possible with other users' loops, 
-not the current user's own loops). If logged in, the user can click a button to see just 
-their own loops, which will have an edit button beside them linking to the loop_editor page.
-![desktop_homepage](media/docs/desktop_homepage_screenshot.png)
 
-- **Loop Editor Page** :
-The user is shown a display representing the current loop. At the top there are 3 inputs - 
-Loop Name, Creator(not editable) and Tempo (a number input). Below this is a table containing
-a row for each track. Each row consists of the instrument name (clickable to change instrument), 
-the track volume (a slider), the beats display (a div for each beat which toggles when
-clicked) and a delete button, which allows the user remove that track permanently (requires
-confirmation). At the bottom are 4 buttons - Play, Add New Track, Save and Delete Loop.
-The page also provides three modals; one each to confirm deletion of a track or the whole loop, 
-and an instrument chooser modal which displays a table containing all available instruments, with 
-the current choice highlighted.
+The homepage is the website landing page and dashboard all at once. It consists in four parts:
+- Nav Bar
+- Header with search bar and site description to introduce user
+- Catalogue of books, with navigation. 
+- Footer
 
-![iphone12_editor](media/docs/iPhone12_loopeditor_screenshot.png)
-![iphone12_instrument](media/docs/iPhone12_instrumentchooser_screenshot.png)
+![desktop_homepage](media/docs/full-page.png)
 
-- **Loop Detail Page**:
-This page was added late in the project, at the suggestion of my mentor, Celestine Okoro. The page collects and displays all the information associated with a particular loop, including the 5 most recent reviews, a graphic showing the beats of each track, a play/pause button, a volume control and a link to the rating
-page. Various animations are displayed when the user hits the play button to hear the audio. A visitor to
-the site does not need to be authenticated to view this page, and it contains a span with a link to the page and a copy button that transfers the link to the visitor's clipboard to facilitate sharing.  
+- **Book Page** :
 
-![desktop_loop_detail_page](media/docs/desktop_loop_detail.png)
+The book page is where users can see a general description of the books and engage in the comment section. The user must be logged in to leave comments, but the comment box is still visible prompting users to log in and leave their comment. Users can also edit or delete their comments. 
+
+![book page](media/docs/bookdetail.png)
+
+- **FAQ**:
+
+I included on the website points to direct the user to the content. There's the description on the home page, and the suggestions on the comment box. The FAQ ties it all together: It's a simple user manual for BookLover, explaining the concept and listing the features with directions on how to use.
+
+![faq](media/docs/faq.png)
 
 
-- **Loop Rating and Comments** :
-The user, if logged in, can rate and comment on drumloops by other users (the rating link is
-disabled for a user's own loops - you can't let people rate themselves!). All previous comments 
-on the chosen loop and the respective ratings are shown in a dialog on the left hand side (on top on mobile). A simple form with 2 editable inputs - for the numerical rating and the comment - appears on the right-hand side (below on mobile).
+- **Add Book Page**:
 
-![desktop_review](media/docs/desktop_review_screenshot.png)
+After logged in, users can see on the navbar the option to ADD BOOK. This directs them to a simple form-page where they can put details of the book and submit for approval. 
 
-- **Messaging** : 
-Messaging is handled by two separate processes, both of which write to the same dedicated div just below the navbar. Standard Django messages are dispatched from the backend and displayed as the page is loaded/reloaded. As these messages are embedded in templates, they can only be shown to the user when a page is loaded. For actions that are carried out using POST requests, such as saving the tracks and loop information, JavaScript is used to write confirmation and error messages to the same div on the page. In both cases, a script removes the message again after a short delay.
+I decided to only use a few details for the book model (title, author, summary and cover) because the goal is to simply identify and give context to the book, so we can have comments about it. This also facilitates the process of users adding new books and populating organically the catalogue. 
 
-![messaging_screenshot](media/docs/messaging_screenshot.png)
+![add_book](media/docs/addbook.png)
+
+- **Other Pages** : 
+The website also has sign in, sign up and log out pages that follow the same form-page format. 
+
+- **Details** : 
+- The nav bar changes if the user has logged in or not. If not, it gives the option to log in and sign up. If logged in, the user will ADD NEW BOOK and logout.
+- There's a message system giving feedback to user actions. For example, if the user types any input not in the database, a message shows up to alert them of that, and directs user to the type of input accepted (title or author name).
+- The comment counter on the comment section changes according to the number of comments to accomodate the setence in the plural or singular. 
+
+![messaging_screenshot](media/docs/search-message.png)
+![counter_person](media/docs/comment-counter-person.png)
+![counter_people](media/docs/comment-counter-person.png)
+
+- **Superuser Admin Panel**: 
+
+I adapted the admin page to better serve the admin needs. A big part of the admin job for LoveBooks is content moderation. This way the superuser can quickly see not approved books and draft books. The admin also has now the action to approve multiple selected books at once. LoveBook should be simple and easy for users and for superusers as well.
+
+![admin](media/docs/booksadmin.png)
+
+- **Superuser Comment Panel**: 
+
+I also adapted the comment page. Now at one glance the admin can look at multiple comments and aprove with one action.
+
+![admin](media/docs/commentsadmin.png)
 
 ### Future Features
-- A useful possible future feature would be the ability to accept an audio sample from the user, 
-save it to media storage, and make it available to all users as one of the instrument choices once it had been approved by an admin or staff member.
-- It might also be useful to use the staff feature of the Django User model to allow staff members to 
-approve ratings and comments, without allowing them full admin access to the database.
-- The app could be expanded to allow the use of musical instruments as well as drum beats and samples alone.
+- A like system so users can see first the most interesting (liked) comments about a book, and also browse through most liked books to find new things to read.
+- A tag system to books added by users. This would make finding book in a unique way: Users could create a "enemie to lovers" tag and find all books with this type of relationship. This could also lead to "book playlists." Basically all the books with the tag "Books that will make you cry in the showers." 
+- A catalogue view with filters to make the process of browsing books even better.
 
+LoveBooks doesn't need these things to function, but it would be fun.
 
-[Return to top](#just-beats)
 # User Experience
 
 ## Design
 
-### Fonts 
-- The main text font used for ordinary text in the body of the project was 'Kanit', which I obtained from Google Fonts. It's a very legible sans-serif font, whose glyphs have a blocky shape that suits the graffiti theme in the site as a whole.
-
-![wallpoet_sample](media/docs/kanit_font_sample.png)
-
-- The font used for headings and labels is 'Wallpoet', which is similar in appearance to a stencil. It was sourced from [this website](https://www.1001fonts.com/graffiti-fonts.html). Thanks to [Lars Berggman](https://www.1001fonts.com/users/punktlars/).
-
-![wallpoet_sample](media/docs/wallpoet_font_sample.png)
-- The font used for the site logo is 'Future', which is slightly less readable but looks more like what a graffiti artist would draw with a can of spraypaint. It was sourced from the same site as 'wallpoet' - thanks to [PressGangStudios](https://www.1001fonts.com/users/pressgang/).
-
-![wallpoet_sample](media/docs/outrun_font_sample.png)
-
-### Colour
-The main image, of a large dark hall with columns covered in graffiti, was sourced from [pexels](www.pexels.com) - thanks to [Paul Basel](https://www.pexels.com/@paul-basel-903490/). As it is dark, I decided to put most of the content inside boxes with an opaque darker overlay, and use white as the font colour throughout to ensure a good contrast between foreground and background. Headings are in yellow or yellow green, which both contrast well against a dark background. For variety, the list of loops on the homepage is black text and gold stars on a light grey background. Here's the basic palette for the site :
-![Colour Palette](media/docs/color_palette.png)
+The design for LoveBooks is a mix of a landing page and a dashboard. I also wanted to make it modern, energetic. So I settled on a mix of dark shades of purple with pink accents (also ties to the love concept). The blue highlights are there to give a more virtual, technologic vibe to the dashboard. 
 
 ### Wireframes
-I decided to draw the wireframes out by hand for this project, as the free wireframe
-prototyping services I had used for previous projects take quite a while to set up. In
-the interests of productivity, I went for the quicker option of pen and paper.
+I wanted simplicity and I wanted to play with shapes, as well visualize the connection between pages. I did a few experiments on paper and I settled on this configuration.
 
-![Wireframe of drumloop list view](media/docs/drumloop_list_wireframe.png)
-![Wireframe of instrument picker modal](media/docs/instrument_picker_wireframe.png)
-![Wireframe of new drumloop creation form](media/docs/new_drumloop_form_wireframe.png)
-![Wireframe of review creation page](media/docs/review_page_wireframe.png)
-
-
-[Return to top](#just-beats)
+![Wireframe](media/docs/wireframes.jpeg)
 
 # Development Process
 
-## Project planning and documentation in GitHub
+## Project planning and documentation 
+
+I started
 
 GitHub Issues were used to document the development steps undertaken in the project. Two issue templates, 
 for [User Epics](https://github.com/johnrearden/just-beats/issues/new?assignees=&labels=&template=user-epic.md&title=USER+EPIC+%3A+%3CTITLE%3E) and [User Stories](https://github.com/johnrearden/just-beats/issues/new?assignees=johnrearden&labels=&template=user-story.md&title=USER+STORY+%3A+%3CTITLE%3E) were used. Various labels were employed to enable quick identification of issue type including Bugs, User Epics, User Stories and Style. MoSCoW prioritisation was employed using the labels must-have, should-have and could-have. 
