@@ -2,59 +2,25 @@
 "What if books had a lovely comments sections?"
 
 LoveBooks is a website where readers can write comments about books, and read what other people are saying about the book.
-The goal is to be a short, casual format just like a comment. It's a place where readers can share their thoughts without having to write an entire review.
+
 
 The live project can be viewed [here](https://lovebooks-be86f5983c9b.herokuapp.com/)
 
-![screenshot](media/docs/responsiveness_screenshot.png)
+![screenshot](media/docs/LoveBooksresp.png)
 
----
+## Project Goal
 
-## Links to content
+**Goal:** Create a website where readers can comment about their favorite things about books they have read, and see what other people are commenting. 
 
-[**Features**](#Features)
+**USER NEEDS** - The problem and the solution
 
-[**User Experience**](#User-Experience)
-- [Design](#design)
-    - [Fonts](#fonts)
-    - [Colour](#colour)
-    - [Wireframes](#wireframes)
+> "Have you ever read a book that you loved so much that you wanted to talk to everyone about it?"
 
-[**Development Process**](#Development-Process)
-- [Project Planning](#project-planning-and-documentation-in-github)
-- [Inline JavaScript](#inline-javascript-and-event-handlers)
-- [Data Model](#data-model)
+Sometimes when you finish a good book, two things happen: You want to talk about the things you loved, and you want to see what other people are talking about it. The internet is full of reviews and book platforms, but sometimes you just want to see a really casual, personal impression of a book or share with people a detail that you liked. This is where Lovebooks comes. 
 
-[**Testing**](#Testing)
-- [Manual Testing](#manual-testing)
-    - [Feature Testing](#feature-testing)
-    - [Responsiveness](#responsiveness)
-    - [Browser Compatibility](#browser-compatibility)
-    - [Lighthouse](#lighthouse)
-    - [Code Validation](#code-validation)
-        - [Python](#python-code)
-        - [JavaScript](#javascript-code)
-        - [HTML](#html-validation)
-        - [CSS](#css-validation)
-    - [User Stories](#user-stories)
-- [Automated Testing](#automated-testing)
-    - [Django testing](#testing-django-views-models-and-forms)
-    - [Selenium testing](#testing-page-functionality-with-selenium)
+It's a simple, positive website for more personal thoughts about the books that you enjoyed. 
 
-[**Bugs**](#Bugs)
-
-[**Libraries and Programs Used**](#libraries-and-programs-used)
-
-[**Deployment**](#Deployment)
-- [Deploying the app on Heroku](#deploying-the-app-on-heroku)
-- [Making a local clone](#making-a-local-clone)
-- [Running the app in your local environment](#running-the-app-in-your-local-environment)
-
-[**Credits**](#Credits)
-
-[**Acknowledgements**](#acknowledgements)
-
----
+**Results:** BookLover is a website with a book catalogue that can be quickly accessed through searching or browsing and can be improved by adding new books. It has a comment section on book pages that allow users to share comments and view other users comments. 
 
 ## Features
 - **Homepage** : 
