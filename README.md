@@ -220,7 +220,8 @@ I also used Lighthouse to check for potential issues and then I used Siege Media
 - All HTML files in the project were validated using the W3C Narkup Validation Service.
 https://validator.w3.org/
 
-|  PAGE | Document checking completed. No errors or warnings to show.  |
+|  PAGE | Document checking completed. No errors or warnings to show. |
+|---|---|
 | home | yes |
 | faq | yes |
 | add book | yes |
