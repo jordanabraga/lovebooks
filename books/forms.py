@@ -7,18 +7,30 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('body',)
 
+
 class AddBook(forms.ModelForm):
     class Meta:
         model = Book
         fields = ('title', 'author', 'featured_image', 'summary', 'status',)
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Enter the book title', 'maxlength': 100}),
-            'author': forms.TextInput(attrs={'placeholder': 'Enter the author name', 'maxlength': 100}),
-            'summary': forms.Textarea(attrs={'placeholder': 'Enter the book summary', 'maxlength': 1000}),
+            'title': forms.TextInput(attrs={
+                'placeholder': 'Enter the book title',
+                'maxlength': 100
+            }),
+            'author': forms.TextInput(attrs={
+                'placeholder': 'Enter the author name',
+                'maxlength': 100
+            }),
+            'summary': forms.Textarea(attrs={
+                'placeholder': 'Enter the book summary',
+                'maxlength': 1000
+            }),
         }
+
         labels = {
-            'featured_image': 'Upload Cover Image',  
+            'featured_image': 'Upload Cover Image',
         }
+
 
 class BookSearchForm(forms.Form):
     query = forms.CharField(label='Search', max_length=100)

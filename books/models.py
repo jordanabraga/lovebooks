@@ -7,6 +7,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here
 
+
 class Book(models.Model):
     title = models.CharField(max_length=200, unique=True)
     author = models.CharField(max_length=200, unique=False)
@@ -25,6 +26,7 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.author}"
+
 
 class Comment(models.Model):
     book = models.ForeignKey(
@@ -45,4 +47,5 @@ class Comment(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return f"Comment {self.body} by {self.added_by} Approved: {self.approved}"
+        return f"Comment {self.body} by {self.added_by}" \
+            f" Approved: {self.approved}"

@@ -10,7 +10,8 @@ from django.db.models import Q
 
 # Create your views here.
 class BooksList(generic.ListView):
-    queryset = Book.objects.all().order_by("-created_on").filter(approved=True, status=1)
+    queryset = Book.objects.all().order_by("-created_on") \
+                                  .filter(approved=True, status=1)
     template_name = "books/index.html"
     paginate_by = 4
 
@@ -45,6 +46,7 @@ def book_detail(request, slug):
          },
     )
 
+
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
@@ -61,11 +63,14 @@ def comment_edit(request, slug, comment_id):
             comment.post = post
             comment.approved = True
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.add_message(request, messages.SUCCESS,
+                                 'Comment Updated!')
         else:
-                messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
+
 
 def comment_delete(request, slug, comment_id):
     """
@@ -79,19 +84,17 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('book_detail', args=[slug]))
 
 
-#create view
-
-
+# Add Book
 def add_book(request):
     if request.method == 'POST':
         form = AddBook(request.POST, request.FILES)
         if form.is_valid():
-            # Assign the current user to the added_by field before saving the form
             book = form.save(commit=False)
             book.added_by = request.user
             book.save()
@@ -116,15 +119,19 @@ class SearchView(generic.ListView):
         queryset = Book.objects.filter(
             Q(title__icontains=query) | Q(author__icontains=query)
         ).order_by('title', 'author')
-        
+
         # Check if queryset is empty
         if not queryset:
-            messages.info(self.request, "No books found matching your search criteria. Try typing an author's name or a book title.")
-        
+            messages.info(self.request, (
+                "No books found matching your search criteria. "
+                "Try typing an author's name or a book title."
+            ))
+
         return queryset
 
+
 class FAQView(TemplateView):
-    template_name = 'books/faq.html'  
+    template_name = 'books/faq.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -350,11 +350,12 @@ Here are the lighthouse reports for the site's main pages :
 ### Code Validation
 
 #### Python code : 
-- All python code is validated by both the Flake8 linter (installed in VSCode) and the external CodeInstitute validator @ https://pep8ci.herokuapp.com/. The sole exceptions are the test classes, some of which contain
-JavaScript snippets which are more readable if confined to one line.
+- All python code is validated by both the Flake8 linter (installed in VSCode) and the external CodeInstitute validator @ https://pep8ci.herokuapp.com/. I used Flake8 to scan general error and then paste the code on CI Python Linter to fix it. I adjusted specifically: admin, urls (both), views, models and settings.
 
 #### JavaScript code :
-- All JavaScript code in the project was validated during development with the JSHint plugin for VSCode.
+- The JavaScript code in the project was validated using JSHint. I only use javascript for the edit and delete button for the comments, and the code was provided by Code Institute on the CodeStar project.
+
+![sign in errors](media/docs/javascript erro.png)
 
 #### HTML Validation :
 - All HTML files in the project were validated using the W3C Narkup Validation Service.
@@ -363,16 +364,19 @@ https://validator.w3.org/
 |  PAGE | Document checking completed. No errors or warnings to show.  |
 | home | yes |
 | faq | yes |
-|  add book |   |
-|  book detail | yes |
-|   |   |
+| add book | yes |
+| book detail | yes |
 | login | yes |
-|  logout | yes  |
-|   |   |
+| logout | yes  |
+| sign in | no, but the only errors are on the text of the imported sign in. I can't modify.|
 
+Sign in Errors
+![sign in errors](media/docs/html error.png)
+
+Related to the help text for the password.
 
 #### CSS Validation :
-- No errors were found when the single CSS file style.css was passed through the W3C Validation Service.
+- I pasted the entired CSS code from file style.css on the W3C Validation Service, and received the result "Congratulations! No Error Found."
 https://jigsaw.w3.org/css-validator/
 
 
@@ -390,7 +394,7 @@ Alternitively, the Epics and Stories are individually linked here :
 
 ---
 
-## Automated Testing
+## Testing
 
 ### Testing django views, models and forms.
 Automated tests were written for all forms, models and views using the Django testing framework. 
