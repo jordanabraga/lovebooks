@@ -1,16 +1,12 @@
 # LoveBooks 
 "What if books had a lovely comments sections?"
 
-Source code can be found [here](https://github.com/johnrearden/just-beats)
+LoveBooks is a website where readers can write comments about books, and read what other people are saying about the book.
+The goal is to be a short, casual format just like a comment. It's a place where readers can share their thoughts without having to write an entire review.
 
-The live project can be viewed [here](https://just-beats.herokuapp.com)
+The live project can be viewed [here](https://lovebooks-be86f5983c9b.herokuapp.com/)
 
-## Purpose of Project
-The aim of the project is to allow users to create and edit drum loops using
-a custom GUI, and save them to a database. Users can also (if logged in) comment
-on and rate other users' loops to provide a social element to the site.
-
-![responsivenes_screenshot](media/docs/responsiveness_screenshot.png)
+![screenshot](media/docs/responsiveness_screenshot.png)
 
 ---
 

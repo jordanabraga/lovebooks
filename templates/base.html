@@ -36,7 +36,6 @@
 <body class="d-flex flex-column h-100">
 
     <!-- Navigation -->
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/favicon.png' %}" alt="Favicon">
@@ -87,9 +86,9 @@
 
     <main class="flex-shrink-0 purple-view">
         <div class="main-bg">
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
+            {% block content %}
+            <!-- Content Goes here -->
+            {% endblock content %}
         </div>
     </main>
 
@@ -109,7 +108,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
+    </script>
 
     {% block extras %}
     {% endblock %}

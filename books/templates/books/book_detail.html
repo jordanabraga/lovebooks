@@ -1,129 +1,106 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
 
-   <!-- displaying Django messages -->
-   <div class ="purple-view">
-   {% for message in messages %}
-   <div class="alert {{ message.tags }} alert-dismissible fade show bg-message" id="msg" role="alert">
-       {{ message | safe }}
-       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-   </div>
-   {% endfor %}
-  </div>
-
-<div class="container book-profile">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="card p-3 mb-3 align-items-start">
-        <div class="row">
-          <div class="col-md-4">
-            <!-- Book Cover -->
-            {% if "placeholder" in book.featured_image.url %}
-            <img class="card-img-top book-cover" src="{% static 'images/placeholder.jpg' %}" alt="placeholder image">
-            {% else %}
-            <img class="card-img-top book-cover" src="{{ book.featured_image.url }}" alt="{{ book.title }}">
-            {% endif %}
-          </div>
-          <div class="col-md-8 book-detail">
-            <!-- Book Details -->
-            <h2>{{ book.title }}</h2>
-            <h6>Written by {{ book.author }}</h6>
-            <p>{{ book.summary | safe }}</p>
-          </div>
-        </div>
-      </div>
-        <div class="row box-detail">
-          <div class="col-md-6">
-            <p>Added By: {{ book.added_by }}</p>
-          </div>
-            <div class="col-md-6">
-            <p>Created On: {{ book.created_on }}</p>
-          </div>
-        </div>
+<!-- displaying Django messages -->
+<div class="purple-view">
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible fade show bg-message" id="msg" role="alert">
+        {{ message | safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  </div>
+    {% endfor %}
 </div>
 
+<div class="container book-profile">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card p-3 mb-3 align-items-start">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- Book Cover -->
+                        {% if "placeholder" in book.featured_image.url %}
+                        <img class="card-img-top book-cover" src="{% static 'images/placeholder.jpg' %}" alt="placeholder image">
+                        {% else %}
+                        <img class="card-img-top book-cover" src="{{ book.featured_image.url }}" alt="{{ book.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8 book-detail">
+                        <!-- Book Details -->
+                        <h2>{{ book.title }}</h2>
+                        <h6>Written by {{ book.author }}</h6>
+                        <p>{{ book.summary | safe }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row box-detail">
+                <div class="col-md-6">
+                    <p>Added By: {{ book.added_by }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Created On: {{ book.created_on }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-
-
-<!--Comment Form -->
-
+<!-- Comment Form -->
 <div class="container form-container">
-      <div class="card-body">
+    <div class="card-body">
         {% if user.is_authenticated %}
         <h3 class="pink-title">What do you love about this book?</h3>
-        <p class="comment-description">Share your favorite moments, characters, narrative points... 
-          Or just scream about <i>THOSE</i> moments that we can't shut up about.</p>
+        <p class="comment-description">Share your favorite moments, characters, narrative points... Or just scream about <i>THOSE</i> moments that we can't shut up about.</p>
         <p class="comment-writer">Writing as: {{ user.username }}</p>
         <form id="commentForm" method="post" class="form-control">
-          {{ comment_form | crispy }}
-          {% csrf_token %}
-          <button type="submit" class="submit-button">Submit</button>
+            {{ comment_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="submit-button">Submit</button>
         </form>
         {% else %}
         <h3 class="pink-title">What do you love about this book?</h3>
-        <p class="comment-description">Share your favorite moments, characters, narrative points... 
-          Or just scream about <i>THOSE</i> moments that we can't shut up about.</p>
+        <p class="comment-description">Share your favorite moments, characters, narrative points... Or just scream about <i>THOSE</i> moments that we can't shut up about.</p>
         <p class="comment-login text-decoration-underline"><a class="link" href="{{ login_url }}">Log in to leave a comment</a></p>
         {% endif %}
-      </div>
     </div>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  <!-- Displaying Comments -->
-  <div class="row pt-5">
-      <div class="col-md-8 mx-auto"> 
-          <div class="card comment-container">
-
-          
-              <h3 class="card-header comment-title">Comments about {{ book.title }}</h3>
-              <div class="comment-counter px-3">
-            {% if comment_count == 1 %}
-            <p><i class="far fa-comments"></i> {{ comment_count }} person is talking about this book.</p>
-            {% else %}
-            <p><i class="far fa-comments"></i> {{ comment_count }} people are talking about this book.</p>
-            {% endif %}
-          </div>
-              <div class="card-body">
-                  {% for comment in comments %}
-                  <div class="p-2 comment {% if not comment.approved and comment.author == user %}faded{% elif not comment.approved %}d-none{% endif %}">
+<!-- Displaying Comments -->
+<div class="row pt-5">
+    <div class="col-md-8 mx-auto">
+        <div class="card comment-container">
+            <h3 class="card-header comment-title">Comments about {{ book.title }}</h3>
+            <div class="comment-counter px-3">
+                {% if comment_count == 1 %}
+                <p><i class="far fa-comments"></i> {{ comment_count }} person is talking about this book.</p>
+                {% else %}
+                <p><i class="far fa-comments"></i> {{ comment_count }} people are talking about this book.</p>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% for comment in comments %}
+                <div class="p-2 comment {% if not comment.approved and comment.author == user %}faded{% elif not comment.approved %}d-none{% endif %}">
                     <p>
-                      <span class="user-name">{{ comment.added_by }} wrote...</span>
-                      <span class="user-date">{{ comment.created_on }}</span>
+                        <span class="user-name">{{ comment.added_by }} wrote...</span>
+                        <span class="user-date">{{ comment.created_on }}</span>
                     </p>
-                      <div id="comment{{ comment.id }}">
-                          {{ comment.body | linebreaks }}
-                      </div>
-                      {% if not comment.approved and comment.author == user %}
-                      <p class="approval">
-                          This comment is awaiting approval
-                      </p>
-                      {% endif %}
-                      {% if user.is_authenticated and comment.added_by == user %}
-                      <button class="delete-button" comment_id="{{ comment.id }}">DELETE</button>
-                      <button class="edit-button" comment_id="{{ comment.id }}">EDIT</button>
-                      {% endif %}
-                  </div>
-                  {% endfor %}
-              </div>
-          </div>
-      </div>
-  </div>
-  
+                    <div id="comment{{ comment.id }}">
+                        {{ comment.body | linebreaks }}
+                    </div>
+                    {% if not comment.approved and comment.author == user %}
+                    <p class="approval">This comment is awaiting approval</p>
+                    {% endif %}
+                    {% if user.is_authenticated and comment.added_by == user %}
+                    <button class="delete-button" comment_id="{{ comment.id }}">DELETE</button>
+                    <button class="edit-button" comment_id="{{ comment.id }}">EDIT</button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
 

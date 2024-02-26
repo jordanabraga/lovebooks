@@ -4,66 +4,66 @@
 {% block content %}
 
 <div class="purple-view">
-<div class="container rounded p-4 mt-4 bg-light">
-    <h1 class="text-center mb-4 purple-title">FAQ</h1>
-    <blockquote class="blockquote hello-pink">What if books had a lovely comments section?</blockquote>
-    <p>LoveBooks is the place you can talk about your favorite books, and see what other 
-       people are saying. <span class="hello-pink">We only have one rule: let's keep it positive.</span> This is not a reviews 
-       website. You're not here to write an essay. 
-    </p>
-    <p>This is the space where you can share with people all those little details that got stuck 
+    <div class="container rounded p-4 mt-4 bg-light">
+        <h1 class="text-center mb-4 purple-title">FAQ</h1>
+        <blockquote class="blockquote hello-pink">What if books had a lovely comments section?</blockquote>
+        <p>LoveBooks is the place you can talk about your favorite books, and see what other 
+        people are saying. <span class="hello-pink">We only have one rule: let's keep it positive.</span> This is not a reviews 
+        website. You're not here to write an essay. 
+        </p>
+        <p>This is the space where you can share with people all those little details that got stuck 
         into your mind about the books you've read, and find people that love the same stories as you! 
-    </p>
-    <p>Let's start.</p>
-    <div id="accordion" class="faq-page">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button text-dark" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    How can I comment on books?
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                data-bs-parent="#accordion">
-                <div class="accordion-body">
-                    <a href="{{ signup_url }}" target="_blank">Sign up for an account here.</a> 
-                    If you already have one, simply <a href="{{ signup_url }}" target="_blank">log in</a> to be able to make comments.
+        </p>
+        <p>Let's start.</p>
+        <div id="accordion" class="faq-page">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button text-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How can I comment on books?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <a href="{{ signup_url }}" target="_blank">Sign up for an account here.</a> 
+                        If you already have one, simply <a href="{{ signup_url }}" target="_blank">log in</a> to be able to make comments.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    How to find books
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#accordion">
-                <div class="accordion-body">
-                Go to our <a href="{{ home_url }}" target="_blank">home page</a>. There you can type on the Search Box the
-                    name of a book or author. If you don't find what you're looking for, registered users can add new books.
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How to find books
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        Go to our <a href="{{ home_url }}" target="_blank">home page</a>. There you can type on the Search Box the
+                        name of a book or author. If you don't find what you're looking for, registered users can add new books.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    How to add new books
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#accordion">
-                <div class="accordion-body">
-                    After logging in, users will find on the menu the option to 
-                    <a href="{{ creator_view_url }}" target="_blank">ADD NEW BOOKS</a>.
-                    Then you'll just new to wait for the approval and everyone will be able to
-                    talk about your new addition to our catalogue!
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How to add new books
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        After logging in, users will find on the menu the option to 
+                        <a href="{{ creator_view_url }}" target="_blank">ADD NEW BOOKS</a>.
+                        Then you'll just new to wait for the approval and everyone will be able to
+                        talk about your new addition to our catalogue!
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 {% endblock %}
