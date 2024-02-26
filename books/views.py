@@ -117,7 +117,9 @@ class SearchView(generic.ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         queryset = Book.objects.filter(
-            Q(title__icontains=query) | Q(author__icontains=query)
+             Q(title__icontains=query) | Q(author__icontains=query),
+             approved=True,
+             status=1
         ).order_by('title', 'author')
 
         # Check if queryset is empty
