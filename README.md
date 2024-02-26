@@ -231,7 +231,7 @@ https://validator.w3.org/
 | sign in | no, but the only errors are on the text of the imported sign in. I can't modify.|
 
 Sign in Errors
-![sign in errors](media/docs/html error.png)
+![sign in errors](media/docs/html-error.png)
 
 Related to the help text for the password.
 
