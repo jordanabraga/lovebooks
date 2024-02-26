@@ -1,5 +1,5 @@
 body {
-    background-color: #70149a;
+    background-color: rgba(69,28,106,1);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -27,25 +27,22 @@ a:hover {
 
 .footer-view {
     background: linear-gradient(0deg, rgba(167,102,238,1) 0%, rgba(69,28,106,1) 37%);
-
 }
 
-.footer-icons{
+.footer-icons {
     color:#f374d1;
     font-size:2.6em;
-
 }
 
-.footer-icons a:visted {
-    color:#f374d1; 
-
+.footer-icons a:visited {
+    color:#f374d1;
 }
 
 .footer-icons a {
-    color:#f374d1; 
+    color:#f374d1;
 }
 
-.footer-logo{
+.footer-logo {
     color:#f374d1;
     font-size:1em;
 }
@@ -122,6 +119,7 @@ a:hover {
     margin: 0 auto; 
     max-width: 400px; 
 }
+
 .btn-primary {
     font-weight: 800;
     width: 100%; 
@@ -201,15 +199,15 @@ input[type="file"]::file-selector-button {
     margin-right: 16px;
     margin-left: 10px;
     transition: background-color 200ms;
-  }
-  
-  input[type="file"]::file-selector-button:hover {
+}
+
+input[type="file"]::file-selector-button:hover {
     background-color: #f3f4f6;
-  }
-  
-  input[type="file"]::file-selector-button:active {
+}
+
+input[type="file"]::file-selector-button:active {
     background-color: #e5e7eb;
-  }
+}
 
 /* Book detail */
 
@@ -222,8 +220,8 @@ input[type="file"]::file-selector-button {
     height: auto; 
     overflow: hidden; 
     object-fit: cover;
-  }
-  
+}
+
 .book-detail h2 {
     color:#70149a;
     font-weight: 800;
@@ -319,9 +317,19 @@ input[type="file"]::file-selector-button {
     color:#a58abe;
 }
 
-.stamp-summary {
+/* .stamp-summary {
     color: rgb(13, 13, 13);
     font-family: Söhne, ui-sans-serif, system-ui, -apple-system;
+} */
+
+/* FAQ page */
+
+.faq-page a {
+    color:#70149a;
+}
+
+.faq-page a:hover {
+    color:#f374d1;
 }
 
 /* Other things */
@@ -333,25 +341,6 @@ input[type="file"]::file-selector-button {
     color: #f84bc9;
 }
 
-.brand a {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #f84bc9;
-}
-
-.thin {
-    font-weight: 300;
-}
-
-.light-bg {
-    background-color: #fff;
-}
-
-.dark-bg {
-    background-color: #445261;
-}
-
 .main-bg {
     background-color: #F9FAFC;
 }
@@ -361,127 +350,10 @@ input[type="file"]::file-selector-button {
     background-color: transparent;
 }
 
-.image-container {
-    position: relative;
-}
-
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
-.author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
 .post-link {
     text-decoration: none;
 }
 
-
-
-.post-title {
-    margin-top: 10%;
-    margin-left: 5%;
-}
-
-.post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
-}
-
-.btn-signup,
-.btn-edit {
-    background-color: #188181;
-    color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-}
-
-.link {
-    color: #23BBBB;
-    text-decoration: none;
-}
-
-.link:hover,
-.link:active {
-    color: #445261;
-    text-decoration: underline;
-}
-
-.btn-like {
-    color: #E84610;
-    border: none;
-    background: transparent;
-}
-
-.btn-delete {
-    color: #fff;
-    background: #E84610;
-}
-
-.btn-like:hover,
-.btn-like:active {
-    color: #E84610;
-    background: transparent;
-    border: none;
-}
-
-.faded {
-    color: rgb(172, 175, 175);
-}
-
-.approval {
-    color: rgb(222, 146, 168);
-}
 
 /* Adjust height for smaller screens */
 @media (max-width: 980px) {
@@ -491,7 +363,7 @@ input[type="file"]::file-selector-button {
     }
     .header {
         height: 100%;
-}
+    }
 }
 
 /* Adjust height for extra small screens */
@@ -512,7 +384,7 @@ input[type="file"]::file-selector-button {
     }
     .header {
         height: 100%;
-}
+    }
 }
 
 /* Adjust height for extra tiny screens */
@@ -523,5 +395,5 @@ input[type="file"]::file-selector-button {
     }
     .header {
         height: 100%;
-}
+    }
 }
