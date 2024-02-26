@@ -231,6 +231,7 @@ https://validator.w3.org/
 | sign in | no, but the only errors are on the text of the imported sign in. I can't modify.|
 
 Sign in Errors
+
 ![sign in errors](media/docs/html-error.png)
 
 Related to the help text for the password.
@@ -241,17 +242,35 @@ https://jigsaw.w3.org/css-validator/
 
 # Bugs
 
-I didn't run in any major bugs while creating the project. Most of them were due to typos. I still documented everything that caused a problem in the page loading as expected. 
+I didn't run into any major bugs while creating the project. Most of them were due to typos. I still documented everything that caused a problem in the page loading as expected. 
 
-Problem: The httpresponse page /books wasn't displaying. Fix: Corrected a typo. 
-Problem: Book summary on main page was showing text with HTML. Fix: Include the safe filter in index html. {{ book.summary|truncatewords:30|safe }}
-Problem: Now book summary was disappearing for certain books. Fix: I decided that truncatewords wasn't as necessary, and the full summary view while browsing books was better user experience.
-Problem: "Edit" comment button wasn't being displayed. Fix: Correct the "comment_edit" function identation. 
-Problem: Deployment to heroku failed due to "ModuleNotFoundError: No module named 'crispy_forms'". Fix: Change to double quotes the crispy_forms on the installed apps list. 
-Problem: Deployment to heroku didn't display css properly. Fix: Run collectstatic again.
-Problem: CSS wasn't being displayed on server. Fix: Change DEBUG to TRUE.
-Problem: A few posts were displaying a different CSS. Fix: It was the Summernote text box adding html and css, I removed those. (Note: truncatewords might work now, but I don't want to add it anymore.)
-Problem: Edit and delete button stopped working. Fix: I needed to adjust the variables to my new class names. 
+- Problem: The HTTP response page /books wasn't displaying.
+  Fix: Corrected a typo.
+  
+- Problem: Book summary on the main page was showing text with HTML.
+  Fix: Include the safe filter in the index HTML. {{ book.summary|truncatewords:30|safe }}
+
+- Problem: Now the book summary was disappearing for certain books.
+  Fix: I decided that truncatewords wasn't as necessary, and the full summary view while browsing books was a better user experience.
+
+- Problem: "Edit" comment button wasn't being displayed.
+  Fix: Correct the "comment_edit" function indentation.
+
+- Problem: Deployment to Heroku failed due to "ModuleNotFoundError: No module named 'crispy_forms'".
+  Fix: Change to double quotes the crispy_forms on the installed apps list.
+
+- Problem: Deployment to Heroku didn't display CSS properly.
+  Fix: Run collectstatic again.
+
+- Problem: CSS wasn't being displayed on the server.
+  Fix: Change DEBUG to TRUE.
+
+- Problem: A few posts were displaying a different CSS.
+  Fix: It was the Summernote text box adding HTML and CSS, I removed those. (Note: truncatewords might work now, but I don't want to add it anymore.)
+
+- Problem: Edit and delete buttons stopped working.
+  Fix: I needed to adjust the variables to my new class names.
+
 
 # Programs Used
 1. [Gitpod](https://www.gitpod.io/)
@@ -260,7 +279,7 @@ Problem: Edit and delete button stopped working. Fix: I needed to adjust the var
     - Heroku was used to deploy the project terminal.
 4. [Github](https://github.com/)
     - Github was used to store the projects after being pushed from Git and its cloud service [Github Pages](https://pages.github.com/) was used to serve the project on the web. GitHub Projects was used to track the User Stories, User Epics, bugs and other issues during the project.
-8. [Photoshop]
+8. Photoshop
     - I used Photoshop to create and edit assets fo the project.
 
 # Deployment
@@ -313,26 +332,28 @@ GitHub icon to connect your Heroku project to your GitHub repo. Enter your repos
 I used Code Institute's Code Star blog project as a reference.
 
 I also researched a few topics and StackOverFlow answers helped me with building this project. Here are the links that I used:
-https://ctrlzblog.com/django-models-how-to-automatically-populate-slug-fields-for-urls/
-https://ctrlzblog.com/how-to-use-foreign-keys-in-your-django-project/
-https://ctrlzblog.com/how-to-add-tags-to-your-blog-a-django-manytomanyfield-example/
-https://linuxhint.com/build-a-basic-search-for-a-django/
-https://dev.to/thedevtimeline/how-to-add-tags-to-your-models-in-django-django-packages-series-1-3704
-https://www.learningaboutelectronics.com/Articles/How-to-create-a-website-that-allows-for-user-generated-posts-with-Python-in-Django.php
-https://ordinarycoders.com/blog/article/render-forms-with-django-crispy-forms
-https://www.youtube.com/watch?v=VL5ZNCjXEbw&t=311s
+- https://ctrlzblog.com/django-models-how-to-automatically-populate-slug-fields-for-urls/
+- https://ctrlzblog.com/how-to-use-foreign-keys-in-your-django-project/
+- https://ctrlzblog.com/how-to-add-tags-to-your-blog-a-django-manytomanyfield-example/
+- https://linuxhint.com/build-a-basic-search-for-a-django/
+- https://dev.to/thedevtimeline/how-to-add-tags-to-your-models-in-django-django-packages-series-1-3704
+- https://www.learningaboutelectronics.com/Articles/How-to-create-a-website-that-allows-for-user-generated-posts-with-Python-in-Django.php
+- https://ordinarycoders.com/blog/article/render-forms-with-django-crispy-forms
+- https://www.youtube.com/watch?v=VL5ZNCjXEbw&t=311s
+
 
 A few book covers are fake coves created by me using licence free pictures:
-Image by wirestock on Freepik
-Image by pvproductions on Freepik
-avatar
-vecstock
-Photo by Rakicevic Nenad
-Photo by Faik  Akmd
-Photo by Keenan Constance
-Photo by Lina Kivaka
-Photo by Pavel Danilyuk
-Photo by Bruno Bueno
+  - Image by wirestock on Freepik
+  - Image by pvproductions on Freepik
+  - avatar
+  - vecstock
+  - Photo by Rakicevic Nenad
+  - Photo by Faik Akmd
+  - Photo by Keenan Constance
+  - Photo by Lina Kivaka
+  - Photo by Pavel Danilyuk
+  - Photo by Bruno Bueno
+
 
 # Acknowledgements
 
