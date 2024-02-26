@@ -74,7 +74,7 @@ The website also has sign in, sign up and log out pages that follow the same for
 
 ![messaging_screenshot](media/docs/search-message.png)
 ![counter_person](media/docs/comment-counter-person.png)
-![counter_people](media/docs/comment-counter-person.png)
+![counter_people](media/docs/comment-counter-people.png)
 
 - **Superuser Admin Panel**: 
 
