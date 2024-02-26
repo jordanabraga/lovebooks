@@ -20,7 +20,7 @@
           <div class="col-md-4">
             <!-- Book Cover -->
             {% if "placeholder" in book.featured_image.url %}
-            <img class="card-img-top book-cover" src="{% static 'images/nobody.jpg' %}" alt="placeholder image">
+            <img class="card-img-top book-cover" src="{% static 'images/placeholder.jpg' %}" alt="placeholder image">
             {% else %}
             <img class="card-img-top book-cover" src="{{ book.featured_image.url }}" alt="{{ book.title }}">
             {% endif %}

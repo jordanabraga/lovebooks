@@ -9,7 +9,7 @@ class BookAdmin(SummernoteModelAdmin):
     list_display = ('title', 'author', 'slug', 'status', 'approved')
     search_fields = ['title', 'author', 'approved']
     list_filter = ('status', 'created_on', 'approved')
-    summernote_fields = ('summary',)
+    summernote_fields = ('summary')
 
     actions = ['mark_as_approved']
 

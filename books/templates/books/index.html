@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in book.featured_image.url %}
-                                <img class="card-img-top" src="{% static 'images/nobody.jpg' %}"
+                                <img class="card-img-top" src="{% static 'images/placeholder.jpg' %}"
                                     alt="placeholder image">
                                 {% else %}
                                 <img class="card-img-top" src="{{ book.featured_image.url }}"
