@@ -360,13 +360,14 @@ JavaScript snippets which are more readable if confined to one line.
 - All HTML files in the project were validated using the W3C Narkup Validation Service.
 https://validator.w3.org/
 
+|  PAGE | Document checking completed. No errors or warnings to show.  |
+| home | yes |
+| faq | yes |
+|  add book |   |
+|  book detail | yes |
 |   |   |
-|---|---|
-|   |   |
-|   |   |
-|   |   |
-| login page |   |
-|   |   |
+| login | yes |
+|  logout | yes  |
 |   |   |
 
 

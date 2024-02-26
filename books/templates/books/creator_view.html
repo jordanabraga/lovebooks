@@ -16,10 +16,10 @@
     <div class="container my-5 form-container">
         <h1 class="purple-title">ADD NEW BOOK</h1>
 
-        <form enctype="multipart/form-data" method="POST" action="" class="form-control">
+        <form enctype="multipart/form-data" method="POST" class="form-control">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Add" class="submit-button"/>
+            <input type="submit" value="Add" class="submit-button">
         </form>
     </div>
 </div>
