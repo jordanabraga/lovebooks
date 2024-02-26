@@ -48,6 +48,10 @@
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">HOME</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'faq' %}">FAQ</a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == creator_view_url %}active{% endif %}" aria-current="page" 
@@ -88,7 +92,7 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 footer-view">
-        <p class="footer-icons text-center mb-0">FOLLOW US:</p>
+        <p class="footer-icons text-center mb-0">FOLLOW US</p>
         <p class="m-0 text-center footer-icons">
             <a href="https://github.com/jordanabraga" target="_blank" rel="noopener noreferrer" class="social-link">
                 <i class="fab fa-github ms-3"></i></a>

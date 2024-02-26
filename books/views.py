@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
+from django.views.generic import TemplateView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Book, Comment
@@ -133,3 +134,10 @@ class SearchView(generic.ListView):
             messages.info(self.request, "No books found matching your search criteria. Try typing an author's name or a book title.")
         
         return queryset
+
+class FAQView(TemplateView):
+    template_name = 'books/faq.html'  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

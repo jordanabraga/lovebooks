@@ -16,14 +16,15 @@
             <div class="col-lg-6">
                     <form action="{% url 'search' %}" method="get" class="search-form">
                         {% csrf_token %}
-                        <input class="form-control search-field" type="text" name="q" placeholder="Search your favorite books">
+                        <input class="form-control search-field" type="text" name="q" placeholder="Search books">
                         <button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
                     </form>
              </div>
             <!-- Title and description column -->
 <div class="col-lg-6 d-flex flex-column justify-content-center p-4 mb-3">
     <h1 class="cool-h1">SHARE YOUR LOVE</h1>
-    <p class="lead"><span class="hello-pink">Everyone is talking about your favorite books</span>. Now it's your turn. Share with the world what you love about the books you're reading.</p>
+    <p class="lead"><span class="hello-pink">Everyone is talking about your favorite books</span>. 
+        Now it's your turn. Share with the world what you love about the books you've been reading.</p>
 </div>
 
             

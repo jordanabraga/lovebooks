@@ -7,8 +7,8 @@ from django_summernote.admin import SummernoteModelAdmin
 class BookAdmin(SummernoteModelAdmin):
 
     list_display = ('title', 'author', 'slug', 'status', 'approved')
-    search_fields = ['title', 'author']
-    list_filter = ('status', 'created_on')
+    search_fields = ['title', 'author', 'approved']
+    list_filter = ('status', 'created_on', 'approved')
     summernote_fields = ('summary',)
 
     actions = ['mark_as_approved']
@@ -18,5 +18,14 @@ class BookAdmin(SummernoteModelAdmin):
     mark_as_approved.short_description = "Approve selected books"
 
 
-# Register your models here.
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(SummernoteModelAdmin):
+
+    list_display = ('book','added_by', 'body', 'approved')
+    search_fields = ('approved', 'created_on', 'book')
+    actions = ['mark_as_approved']
+
+    def mark_as_approved(self, request, queryset):
+        queryset.update(approved=True)
+    mark_as_approved.short_description = "Approve selected books"
+

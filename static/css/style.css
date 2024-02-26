@@ -324,6 +324,16 @@ input[type="file"]::file-selector-button {
     font-family: Söhne, ui-sans-serif, system-ui, -apple-system;
 }
 
+/* FAQ page */
+
+.faq-page a {
+    color:#70149a;
+}
+
+.faq-page a:hover {
+    color:#f374d1;
+}
+
 /* Other things */
 
 .brand {
